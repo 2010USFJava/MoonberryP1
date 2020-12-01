@@ -1,7 +1,7 @@
 package com.revature.model;
 
 public class Approver {
-	private int approver_id;
+	private int approverid;
 	private Approver_Type atype;
 	private String firstname;
 	private String lastname;
@@ -14,10 +14,10 @@ public class Approver {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Approver(int approver_id, Approver_Type atype, String firstname, String lastname, String department,
+	public Approver(int approverid, Approver_Type atype, String firstname, String lastname, String department,
 			String username, String password) {
 		super();
-		this.approver_id = approver_id;
+		this.approverid = approverid;
 		this.atype = atype;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -26,12 +26,12 @@ public class Approver {
 		this.password = password;
 	}
 
-	public int getApprover_id() {
-		return approver_id;
+	public int getApproverid() {
+		return approverid;
 	}
 
-	public void setApprover_id(int approver_id) {
-		this.approver_id = approver_id;
+	public void setApproverid(int approverid) {
+		this.approverid = approverid;
 	}
 
 	public Approver_Type getAtype() {
@@ -84,7 +84,7 @@ public class Approver {
 
 	@Override
 	public String toString() {
-		return "Approver [approver_id=" + approver_id + ", atype=" + atype + ", firstname=" + firstname + ", lastname="
+		return "Approver [approverid=" + approverid + ", atype=" + atype + ", firstname=" + firstname + ", lastname="
 				+ lastname + ", department=" + department + ", username=" + username + ", password=" + password + "]";
 	}
 	

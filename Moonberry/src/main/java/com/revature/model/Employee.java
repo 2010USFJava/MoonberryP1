@@ -2,6 +2,7 @@ package com.revature.model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 public class Employee {
 	private int employeeId;
@@ -12,7 +13,7 @@ public class Employee {
 	private int directSuper;
 	private String username;
 	private String password;
-	private ArrayList
+	private ArrayList<TR_Request> requests;
 	
 
 	public Employee(int employeeId, String firstname, String lastname, int departmentId, int directSuper,
@@ -26,6 +27,7 @@ public class Employee {
 		this.username = username;
 		this.password = password;
 		this.tuitionAvail = 1000;
+		this.requests = new ArrayList<TR_Request>();
 	}
 
 
@@ -47,8 +49,12 @@ public class Employee {
 			LocalDate eventEndDate, String eventName, String eventLocation, String eventDescription, 
 			Grade_Format gradeFormat, String workJust) {
 		//TODO: Make a request object
-		long untilEventStarts = requestDate.until(eventEndDate, ChronoUnit.DAYS);
-		
+		long daysUntilStart = requestDate.until(eventEndDate, ChronoUnit.DAYS);
+		if (daysUntilStart < 7) {
+			return false;
+		}
+		boolean urgent = (daysUntilStart < 14);
+		TR_Request r = new TR_Request();
 		
 		return false;
 	}
