@@ -1,12 +1,12 @@
 package com.revature.model;
 
 public class Employee {
-	private int employee_id;
+	private int employeeid;
 	private String firstname;
 	private String lastname;
-	private int department_id;
-	private float tuition_avail;
-	private int direct_super;
+	private int departmentid;
+	private float tuitionavail;
+	private int directsuper;
 	private String username;
 	private String password;
 }

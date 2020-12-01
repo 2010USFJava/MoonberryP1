@@ -4,20 +4,20 @@ import java.time.LocalDate;
 
 public class TR_Request {
 
-	private int request_Status;
-	private int request_Id;
+	private int requestStatus;
+	private int requestId;
 	private int employee_Id;
-	private LocalDate request_Date;
-	private LocalDate event_Date;
-	private String event_Length;
-	private String event_Name;
-	private String event_Location;
-	private String event_Description;
-	private LocalDate event_Start_Date;
-	private LocalDate event_End_Date;
-	private double tuition_Amount;
-	private Grade_Format grade_F;
-	private String work_Just;
+	private LocalDate requestDate;
+	private LocalDate eventDate;
+	private String eventLength;
+	private String eventName;
+	private String eventLocation;
+	private String eventDescription;
+	private LocalDate eventStartDate;
+	private LocalDate eventEndDate;
+	private double tuitionAmount;
+	private Grade_Format gradeF;
+	private String workJust;
 	private boolean urgent;
 	
 	public TR_Request() {
@@ -25,45 +25,42 @@ public class TR_Request {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public TR_Request(int request_Status, int request_Id, int employee_Id, LocalDate request_Date, LocalDate event_Date,
-			String event_Length, String event_Name, String event_Location, String event_Description,
-			LocalDate event_Start_Date, LocalDate event_End_Date, double tuition_Amount, Grade_Format grade_F,
-			String work_Just, boolean urgent) {
+	public TR_Request(int requestStatus, int requestId, int employee_Id, LocalDate requestDate, LocalDate eventDate,
+			String eventLength, String eventName, String eventLocation, String eventDescription,
+			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
+			String workJust, boolean urgent) {
 		super();
-		this.request_Status = request_Status;
-		this.request_Id = request_Id;
+		this.requestStatus = requestStatus;
+		this.requestId = requestId;
 		this.employee_Id = employee_Id;
-		this.request_Date = request_Date;
-		this.event_Date = event_Date;
-		this.event_Length = event_Length;
-		this.event_Name = event_Name;
-		this.event_Location = event_Location;
-		this.event_Description = event_Description;
-		this.event_Start_Date = event_Start_Date;
-		this.event_End_Date = event_End_Date;
-		this.tuition_Amount = tuition_Amount;
-		this.grade_F = grade_F;
-		this.work_Just = work_Just;
+		this.requestDate = requestDate;
+		this.eventDate = eventDate;
+		this.eventLength = eventLength;
+		this.eventName = eventName;
+		this.eventLocation = eventLocation;
+		this.eventDescription = eventDescription;
+		this.eventStartDate = eventStartDate;
+		this.eventEndDate = eventEndDate;
+		this.tuitionAmount = tuitionAmount;
+		this.gradeF = gradeF;
+		this.workJust = workJust;
 		this.urgent = urgent;
 	}
 
-
-
-	public int getRequest_Status() {
-		return request_Status;
+	public int getRequestStatus() {
+		return requestStatus;
 	}
 
-	public void setRequest_Status(int request_Status) {
-		this.request_Status = request_Status;
+	public void setRequestStatus(int requestStatus) {
+		this.requestStatus = requestStatus;
 	}
 
-	public int getRequest_Id() {
-		return request_Id;
+	public int getRequestId() {
+		return requestId;
 	}
 
-	public void setRequest_Id(int request_Id) {
-		this.request_Id = request_Id;
+	public void setRequestId(int requestId) {
+		this.requestId = requestId;
 	}
 
 	public int getEmployee_Id() {
@@ -74,84 +71,92 @@ public class TR_Request {
 		this.employee_Id = employee_Id;
 	}
 
-	public LocalDate getRequest_Date() {
-		return request_Date;
+	public LocalDate getRequestDate() {
+		return requestDate;
 	}
 
-	public void setRequest_Date(LocalDate request_Date) {
-		this.request_Date = request_Date;
+	public void setRequestDate(LocalDate requestDate) {
+		this.requestDate = requestDate;
 	}
 
-	public LocalDate getEvent_Date() {
-		return event_Date;
+	public LocalDate getEventDate() {
+		return eventDate;
 	}
 
-	public void setEvent_Date(LocalDate event_Date) {
-		this.event_Date = event_Date;
+	public void setEventDate(LocalDate eventDate) {
+		this.eventDate = eventDate;
 	}
 
-	public String getEvent_Length() {
-		return event_Length;
+	public String getEventLength() {
+		return eventLength;
 	}
 
-	public void setEvent_Length(String event_Length) {
-		this.event_Length = event_Length;
+	public void setEventLength(String eventLength) {
+		this.eventLength = eventLength;
 	}
 
-	public String getEvent_Name() {
-		return event_Name;
+	public String getEventName() {
+		return eventName;
 	}
 
-	public void setEvent_Name(String event_Name) {
-		this.event_Name = event_Name;
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
 
-	public String getEvent_Location() {
-		return event_Location;
+	public String getEventLocation() {
+		return eventLocation;
 	}
 
-	public void setEvent_Location(String event_Location) {
-		this.event_Location = event_Location;
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
 	}
 
-	public String getEvent_Description() {
-		return event_Description;
+	public String getEventDescription() {
+		return eventDescription;
 	}
 
-	public void setEvent_Description(String event_Description) {
-		this.event_Description = event_Description;
+	public void setEventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
 	}
 
-	public LocalDate getEvent_Start_Date() {
-		return event_Start_Date;
+	public LocalDate getEventStartDate() {
+		return eventStartDate;
 	}
 
-	public void setEvent_Start_Date(LocalDate event_Start_Date) {
-		this.event_Start_Date = event_Start_Date;
+	public void setEventStartDate(LocalDate eventStartDate) {
+		this.eventStartDate = eventStartDate;
 	}
 
-	public LocalDate getEvent_End_Date() {
-		return event_End_Date;
+	public LocalDate getEventEndDate() {
+		return eventEndDate;
 	}
 
-	public void setEvent_End_Date(LocalDate event_End_Date) {
-		this.event_End_Date = event_End_Date;
+	public void setEventEndDate(LocalDate eventEndDate) {
+		this.eventEndDate = eventEndDate;
 	}
 
-	public Grade_Format getGrade_F() {
-		return grade_F;
+	public double getTuitionAmount() {
+		return tuitionAmount;
 	}
 
-	public void setGrade_F(Grade_Format grade_F) {
-		this.grade_F = grade_F;
+	public void setTuitionAmount(double tuitionAmount) {
+		this.tuitionAmount = tuitionAmount;
 	}
 
-	public String getWork_Just() {
-		return work_Just;
+	public Grade_Format getGradeF() {
+		return gradeF;
 	}
 
-	public void setWork_Just(String work_Just) {
-		this.work_Just = work_Just;
+	public void setGradeF(Grade_Format gradeF) {
+		this.gradeF = gradeF;
+	}
+
+	public String getWorkJust() {
+		return workJust;
+	}
+
+	public void setWorkJust(String workJust) {
+		this.workJust = workJust;
 	}
 
 	public boolean isUrgent() {
@@ -164,12 +169,12 @@ public class TR_Request {
 
 	@Override
 	public String toString() {
-		return "TR_Request [request_Status=" + request_Status + ", request_Id=" + request_Id + ", employee_Id="
-				+ employee_Id + ", request_Date=" + request_Date + ", event_Date=" + event_Date + ", event_Length="
-				+ event_Length + ", event_Name=" + event_Name + ", event_Location=" + event_Location
-				+ ", event_Description=" + event_Description + ", event_Start_Date=" + event_Start_Date
-				+ ", event_End_Date=" + event_End_Date + ", grade_F=" + grade_F + ", work_Just=" + work_Just
-				+ ", urgent=" + urgent + "]";
+		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employee_Id="
+				+ employee_Id + ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventLength="
+				+ eventLength + ", eventName=" + eventName + ", eventLocation=" + eventLocation + ", eventDescription="
+				+ eventDescription + ", eventStartDate=" + eventStartDate + ", eventEndDate=" + eventEndDate
+				+ ", tuitionAmount=" + tuitionAmount + ", gradeF=" + gradeF + ", workJust=" + workJust + ", urgent="
+				+ urgent + "]";
 	}
 	
 	

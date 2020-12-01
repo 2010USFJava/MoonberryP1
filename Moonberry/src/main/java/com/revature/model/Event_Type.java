@@ -1,10 +1,10 @@
 package com.revature.model;
 
 public enum Event_Type {
-	UNIVERSITY_COURSE,
+	UNIVERSITYCOURSE,
 	SEMINAR,
-	CERT_PREP_COURSE,
+	CERTPREPCOURSE,
 	CERT,
-	TECH_TRAINING,
+	TECHTRAINING,
 	OTHER
 }
