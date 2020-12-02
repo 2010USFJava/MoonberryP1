@@ -6,7 +6,7 @@ public class TR_Request {
 
 	private RS requestStatus;
 	private int requestId;
-	private int employee_Id;
+	private int employeeId;
 	private LocalDate requestDate;
 	private LocalDate eventDate;
 	private String eventLength;
@@ -25,14 +25,14 @@ public class TR_Request {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TR_Request(RS requestStatus, int requestId, int employee_Id, LocalDate requestDate, 
+	public TR_Request(RS requestStatus, int requestId, int employeeId, LocalDate requestDate, 
 			String eventName, String eventLocation, String eventDescription,
 			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
 			String workJust, boolean urgent) {
 		super();
 		this.requestStatus = requestStatus;
 		this.requestId = requestId;
-		this.employee_Id = employee_Id;
+		this.employeeId = employeeId;
 		this.requestDate = requestDate;
 		this.eventName = eventName;
 		this.eventLocation = eventLocation;
@@ -61,12 +61,12 @@ public class TR_Request {
 		this.requestId = requestId;
 	}
 
-	public int getEmployee_Id() {
-		return employee_Id;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee_Id(int employee_Id) {
-		this.employee_Id = employee_Id;
+	public void setEmployeeId(int employee_Id) {
+		this.employeeId = employee_Id;
 	}
 
 	public LocalDate getRequestDate() {
@@ -168,7 +168,7 @@ public class TR_Request {
 	@Override
 	public String toString() {
 		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employee_Id="
-				+ employee_Id + ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventLength="
+				+ employeeId + ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventLength="
 				+ eventLength + ", eventName=" + eventName + ", eventLocation=" + eventLocation + ", eventDescription="
 				+ eventDescription + ", eventStartDate=" + eventStartDate + ", eventEndDate=" + eventEndDate
 				+ ", tuitionAmount=" + tuitionAmount + ", gradeF=" + gradeF + ", workJust=" + workJust + ", urgent="
