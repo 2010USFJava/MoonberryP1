@@ -15,7 +15,7 @@ public class ApproverDaoImpl implements ApproverDao{
 	@Override
 	public void setApprovalStatus(TR_Request tr) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		// we can use this method to do all the status changes in other methods
 	}
 
 	@Override
