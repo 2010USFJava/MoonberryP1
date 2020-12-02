@@ -25,7 +25,7 @@ public class TR_Request {
 	}
 
 
-	public TR_Request(RS requestStatus, int requestId, int employee_Id, LocalDate requestDate, 
+	public TR_Request(RS requestStatus, int requestId, int employeeId, LocalDate requestDate, 
 			String eventName, String eventLocation, String eventDescription,
 			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
 			String workJust, boolean urgent) {
@@ -65,6 +65,7 @@ public class TR_Request {
 	public int getEmployeeId() {
 		return employeeId;
 	}
+
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
