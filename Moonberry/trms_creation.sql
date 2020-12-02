@@ -66,8 +66,8 @@ values
 ;
 
 create table tr_request(
+    request_id serial primary key,
 	request_status int,
-	request_id serial primary key,
 	employee_id int not null,
 	request_date date default now(),
 	event_start_date varchar(20) not null,
