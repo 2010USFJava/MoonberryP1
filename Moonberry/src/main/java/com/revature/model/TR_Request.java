@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class TR_Request {
 
-	private int requestStatus;
+	private RS requestStatus;
 	private int requestId;
 	private int employeeId;
 	private LocalDate requestDate;
@@ -24,15 +24,17 @@ public class TR_Request {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TR_Request(int requestStatus, int requestId, int employeeId, LocalDate requestDate, LocalDate eventDate,
-			String eventName, String eventLocation, String eventDescription, LocalDate eventStartDate,
-			LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF, String workJust, boolean urgent) {
+
+	public TR_Request(RS requestStatus, int requestId, int employee_Id, LocalDate requestDate, 
+			String eventName, String eventLocation, String eventDescription,
+			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
+			String workJust, boolean urgent) {
+
 		super();
 		this.requestStatus = requestStatus;
 		this.requestId = requestId;
 		this.employeeId = employeeId;
 		this.requestDate = requestDate;
-		this.eventDate = eventDate;
 		this.eventName = eventName;
 		this.eventLocation = eventLocation;
 		this.eventDescription = eventDescription;
@@ -44,11 +46,11 @@ public class TR_Request {
 		this.urgent = urgent;
 	}
 
-	public int getRequestStatus() {
+	public RS getRequestStatus() {
 		return requestStatus;
 	}
 
-	public void setRequestStatus(int requestStatus) {
+	public void setRequestStatus(RS requestStatus) {
 		this.requestStatus = requestStatus;
 	}
 

@@ -33,33 +33,46 @@ public class Employee {
 
 	/**
 	 * Makes a request.
-	 * @param eventType
-	 * @param requestDate
-	 * @param requestAmount
+	 * @param eventType: The type of event
+	 * @param requestDate: The date the TR is being requested
+	 * @param requestAmount: The cost of the event
 	 * @param eventStartDate
 	 * @param eventEndDate
 	 * @param eventName
 	 * @param eventLocation
 	 * @param eventDescription
 	 * @param gradeFormat
-	 * @param workJust
+	 * @param workJust: Justification for reimbursement.
 	 * @return true if the request is valid.
 	 */
-	public boolean makeRequest(Event_Type eventType, LocalDate requestDate, float requestAmount, LocalDate eventStartDate, 
+	public boolean makeRequest(Event_Type eventType, LocalDate requestDate, double requestAmount, LocalDate eventStartDate, 
 			LocalDate eventEndDate, String eventName, String eventLocation, String eventDescription, 
-			Grade_Format gradeFormat, String workJust) {
+			Grade_Format gradeFormat, String workJust, boolean emailProvided) {
 		//TODO: Make a request object
 		long daysUntilStart = requestDate.until(eventEndDate, ChronoUnit.DAYS);
 		if (daysUntilStart < 7) {
 			return false;
 		}
 		boolean urgent = (daysUntilStart < 14);
-		TR_Request r = new TR_Request();
-		
-		return false;
+		TR_Request r = null;
+		if (emailProvided)
+			r = new TR_Request(RS.AWAIT_BENCO_APPROVAL, -1, this.employeeId, requestDate, eventName, eventLocation, 
+					eventDescription, eventStartDate, eventEndDate, requestAmount, gradeFormat, workJust, urgent);
+		else
+			r = new TR_Request(RS.AWAIT_SUPER_APPROVAL, -1, this.employeeId, requestDate, eventName, eventLocation, 
+					eventDescription, eventStartDate, eventEndDate, requestAmount, gradeFormat, workJust, urgent);
+		requests.add(r);
+		return true;
 	}
 	
+	public String provideAddnInfo(String info) {
+		return info;
+	}
 	
+	public void rejectReimbursement(TR_Request r) {
+		r.setRequestStatus(RS.REQUEST_REJECTED);
+		requests.remove(r);
+	}
 	
 	
 }
