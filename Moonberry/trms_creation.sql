@@ -66,18 +66,17 @@ values
 ;
 
 create table tr_request(
+    request_id serial primary key,
 	request_status int,
-	request_id serial primary key,
 	employee_id int not null,
 	request_date date default now(),
-	event_date date not null default now(),
 	event_start_date varchar(20) not null,
 	event_end_date varchar(20) not null,
 	event_name varchar(50) not null,
 	event_location varchar(50) not null,
 	event_description text default null,
-	tuition_Amount numeric(6,2) default 0.00 not null,
-	grade_fromat grade_format not null,
+	tuition_amount numeric(6,2) default 0.00 not null,
+	grade_format grade_format not null,
 	event_type event_type not null,
 	work_just text not null,
 	urgent boolean default false,
