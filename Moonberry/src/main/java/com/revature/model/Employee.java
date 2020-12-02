@@ -33,16 +33,16 @@ public class Employee {
 
 	/**
 	 * Makes a request.
-	 * @param eventType
-	 * @param requestDate
-	 * @param requestAmount
+	 * @param eventType: The type of event
+	 * @param requestDate: The date the TR is being requested
+	 * @param requestAmount: The cost of the event
 	 * @param eventStartDate
 	 * @param eventEndDate
 	 * @param eventName
 	 * @param eventLocation
 	 * @param eventDescription
 	 * @param gradeFormat
-	 * @param workJust
+	 * @param workJust: Justification for reimbursement.
 	 * @return true if the request is valid.
 	 */
 	public boolean makeRequest(Event_Type eventType, LocalDate requestDate, float requestAmount, LocalDate eventStartDate, 
@@ -54,9 +54,10 @@ public class Employee {
 			return false;
 		}
 		boolean urgent = (daysUntilStart < 14);
-		TR_Request r = new TR_Request();
+		TR_Request r = new TR_Request(1, -1, employeeId, requestDate, eventName, eventLocation, eventDescription,
+				eventStartDate, eventEndDate, requestAmount, gradeFormat, workJust, urgent);
 		
-		return false;
+		return true;
 	}
 	
 	

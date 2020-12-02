@@ -25,8 +25,8 @@ public class TR_Request {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TR_Request(int requestStatus, int requestId, int employee_Id, LocalDate requestDate, LocalDate eventDate,
-			String eventLength, String eventName, String eventLocation, String eventDescription,
+	public TR_Request(int requestStatus, int requestId, int employee_Id, LocalDate requestDate, 
+			String eventName, String eventLocation, String eventDescription,
 			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
 			String workJust, boolean urgent) {
 		super();
@@ -34,8 +34,6 @@ public class TR_Request {
 		this.requestId = requestId;
 		this.employee_Id = employee_Id;
 		this.requestDate = requestDate;
-		this.eventDate = eventDate;
-		this.eventLength = eventLength;
 		this.eventName = eventName;
 		this.eventLocation = eventLocation;
 		this.eventDescription = eventDescription;
