@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.revature.dao.ApproverDao;
 import com.revature.model.Approver;
+import com.revature.model.RS;
 import com.revature.model.TR_Request;
 import com.revature.util.ConnFactory;
 
@@ -13,14 +14,16 @@ public class ApproverDaoImpl implements ApproverDao{
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	@Override
-	public void setApprovalStatus(TR_Request tr) throws SQLException {
+	public void setApprovalStatus(RS rs, TR_Request tr) throws SQLException {
 		// TODO Auto-generated method stub
 		// we can use this method to do all the status changes in other methods
 	}
 
 	@Override
-	public void requestInfo() throws SQLException {
-		// TODO Auto-generated method stub
+	public void requestInfo(TR_Request tr) throws SQLException {
+	    setApprovalStatus(RS.ADD_INFO_REQUESTED,tr);
+	    //TODO:Send message to employee that additional info is requested
+	    //TODO: log this
 		
 	}
 
