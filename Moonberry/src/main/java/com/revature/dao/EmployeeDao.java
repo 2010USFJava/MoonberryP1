@@ -1,5 +1,6 @@
 package com.revature.dao;
 
-public class EmployeeDao {
-
+public interface EmployeeDao {
+	//TODO save files to database
+	//TODO submit details to database
 }

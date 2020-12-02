@@ -6,10 +6,9 @@ public class TR_Request {
 
 	private int requestStatus;
 	private int requestId;
-	private int employee_Id;
+	private int employeeId;
 	private LocalDate requestDate;
 	private LocalDate eventDate;
-	private String eventLength;
 	private String eventName;
 	private String eventLocation;
 	private String eventDescription;
@@ -25,17 +24,15 @@ public class TR_Request {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TR_Request(int requestStatus, int requestId, int employee_Id, LocalDate requestDate, LocalDate eventDate,
-			String eventLength, String eventName, String eventLocation, String eventDescription,
-			LocalDate eventStartDate, LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF,
-			String workJust, boolean urgent) {
+	public TR_Request(int requestStatus, int requestId, int employeeId, LocalDate requestDate, LocalDate eventDate,
+			String eventName, String eventLocation, String eventDescription, LocalDate eventStartDate,
+			LocalDate eventEndDate, double tuitionAmount, Grade_Format gradeF, String workJust, boolean urgent) {
 		super();
 		this.requestStatus = requestStatus;
 		this.requestId = requestId;
-		this.employee_Id = employee_Id;
+		this.employeeId = employeeId;
 		this.requestDate = requestDate;
 		this.eventDate = eventDate;
-		this.eventLength = eventLength;
 		this.eventName = eventName;
 		this.eventLocation = eventLocation;
 		this.eventDescription = eventDescription;
@@ -63,12 +60,12 @@ public class TR_Request {
 		this.requestId = requestId;
 	}
 
-	public int getEmployee_Id() {
-		return employee_Id;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee_Id(int employee_Id) {
-		this.employee_Id = employee_Id;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public LocalDate getRequestDate() {
@@ -85,14 +82,6 @@ public class TR_Request {
 
 	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
-	}
-
-	public String getEventLength() {
-		return eventLength;
-	}
-
-	public void setEventLength(String eventLength) {
-		this.eventLength = eventLength;
 	}
 
 	public String getEventName() {
@@ -169,13 +158,14 @@ public class TR_Request {
 
 	@Override
 	public String toString() {
-		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employee_Id="
-				+ employee_Id + ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventLength="
-				+ eventLength + ", eventName=" + eventName + ", eventLocation=" + eventLocation + ", eventDescription="
-				+ eventDescription + ", eventStartDate=" + eventStartDate + ", eventEndDate=" + eventEndDate
-				+ ", tuitionAmount=" + tuitionAmount + ", gradeF=" + gradeF + ", workJust=" + workJust + ", urgent="
-				+ urgent + "]";
+		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employeeId=" + employeeId
+				+ ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventName=" + eventName
+				+ ", eventLocation=" + eventLocation + ", eventDescription=" + eventDescription + ", eventStartDate="
+				+ eventStartDate + ", eventEndDate=" + eventEndDate + ", tuitionAmount=" + tuitionAmount + ", gradeF="
+				+ gradeF + ", workJust=" + workJust + ", urgent=" + urgent + "]";
 	}
+
+	
 	
 	
 }
