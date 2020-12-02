@@ -15,8 +15,14 @@ public class ApproverDaoImpl implements ApproverDao{
 
 	@Override
 	public void setApprovalStatus(RS rs, TR_Request tr) throws SQLException {
-		// TODO Auto-generated method stub
-		// we can use this method to do all the status changes in other methods
+		tr.setRequestStatus(rs);
+		Connection conn = cf.getConnection();
+		String sql = "update tr_request set request_status=? where request_id = ?";
+		PreparedStatement ps =conn.prepareStatement(sql);
+		ps.setInt(1,rs.getStatusCode());
+		ps.setInt(2,tr.getRequestId());
+		ps.executeUpdate();
+		
 	}
 
 	@Override
