@@ -9,7 +9,7 @@ public class Employee {
 	private String firstname;
 	private String lastname;
 	private int departmentId;
-	private float tuitionAvail;
+	private double availRmbsment;
 	private int directSuper;
 	private String username;
 	private String password;
@@ -26,20 +26,8 @@ public class Employee {
 		this.directSuper = directSuper;
 		this.username = username;
 		this.password = password;
-		this.tuitionAvail = 1000;
+		this.availRmbsment = 1000;
 		this.requests = new ArrayList<TR_Request>();
-	}
-
-
-	
-	
-	public String provideAddnInfo(String info) {
-		return info;
-	}
-	
-	public void rejectReimbursement(TR_Request r) {
-		r.setRequestStatus(RS.REQUEST_REJECTED);
-		requests.remove(r);
 	}
 
 
@@ -73,13 +61,13 @@ public class Employee {
 	}
 
 
-	public float getTuitionAvail() {
-		return tuitionAvail;
+	public double getAvailRmbsment() {
+		return availRmbsment;
 	}
 
 
-	public void setTuitionAvail(float tuitionAvail) {
-		this.tuitionAvail = tuitionAvail;
+	public void setAvailRmbsment(double availRmbsment) {
+		this.availRmbsment = availRmbsment;
 	}
 
 

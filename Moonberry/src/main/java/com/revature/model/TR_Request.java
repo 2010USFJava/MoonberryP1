@@ -15,6 +15,7 @@ public class TR_Request {
 	private LocalDate eventStartDate;
 	private LocalDate eventEndDate;
 	private double tuitionAmount;
+	private double rmbsmentAmount;
 	private Grade_Format gradeF;
 	private String workJust;
 	private boolean urgent;
@@ -41,6 +42,7 @@ public class TR_Request {
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.tuitionAmount = tuitionAmount;
+		this.rmbsmentAmount = 0.0;
 		this.gradeF = gradeF;
 		this.workJust = workJust;
 		this.urgent = urgent;
@@ -135,6 +137,15 @@ public class TR_Request {
 		this.tuitionAmount = tuitionAmount;
 	}
 
+	public double getRmbsmentAmount() {
+		return rmbsmentAmount;
+	}
+
+	public void setRmbsmentAmount(double rmbsmentAmount) {
+		this.rmbsmentAmount = rmbsmentAmount;
+	}
+
+
 	public Grade_Format getGradeF() {
 		return gradeF;
 	}
@@ -159,15 +170,16 @@ public class TR_Request {
 		this.urgent = urgent;
 	}
 
+
 	@Override
 	public String toString() {
 		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employeeId=" + employeeId
 				+ ", requestDate=" + requestDate + ", eventDate=" + eventDate + ", eventName=" + eventName
 				+ ", eventLocation=" + eventLocation + ", eventDescription=" + eventDescription + ", eventStartDate="
-				+ eventStartDate + ", eventEndDate=" + eventEndDate + ", tuitionAmount=" + tuitionAmount + ", gradeF="
-				+ gradeF + ", workJust=" + workJust + ", urgent=" + urgent + "]";
+				+ eventStartDate + ", eventEndDate=" + eventEndDate + ", tuitionAmount=" + tuitionAmount
+				+ ", rmbsmentAmount=" + rmbsmentAmount + ", gradeF=" + gradeF + ", workJust=" + workJust + ", urgent="
+				+ urgent + "]";
 	}
-
 	
 	
 	
