@@ -2,7 +2,7 @@ package com.revature.model;
 
 public enum Grade_Format {
 	LETTER,
-	PASSFAIL,
+	PASS_FAIL,
 	PERCENTAGE,
 	COMPLETETION
 }
