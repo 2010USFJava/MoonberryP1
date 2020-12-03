@@ -97,8 +97,26 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	
 	@Override
 	public Employee findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee e = null;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from employee where employee_id=?";
+			PreparedStatement ps;
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				e = new Employee(id, rs.getString("firstname"), rs.getString("lastname"), 
+						rs.getInt("department_id"), rs.getInt("direct_super"), 
+						rs.getString("username"), rs.getString("password"));
+				e.setAvailRmbsment(rs.getDouble("avail_rmbsment"));
+			}
+				
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return e;
 	}
 	@Override
 	public List<Employee> findAll() {
