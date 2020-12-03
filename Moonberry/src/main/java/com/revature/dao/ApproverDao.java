@@ -13,9 +13,15 @@ public interface ApproverDao {
   	 * */
   public void requestInfo(TR_Request tr) throws SQLException;
   
-  public void getEmployeeByUsername(String username) throws SQLException;
+  public Approver getApproverByUsername(String username) throws SQLException;
   
-  public void getEmployeeById(int id) throws SQLException;
+  public Approver getApproverById(int id) throws SQLException;
   
   public void newApprover(Approver a)throws SQLException;
+ 
+  public void updateAmount(TR_Request tr, double amount) throws SQLException;
+  
+  //public void 
+  
+  
 }
