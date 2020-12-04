@@ -37,10 +37,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 * @param workJust: Justification for reimbursement.
 	 * @return null if the request is invalid.
 	 */
-	public TR_Request makeRequest(Employee employee, Event_Type eventType, LocalDateTime requestMadeDate, 
+	public TR_Request makeRequest(Employee employee, LocalDateTime requestMadeDate, 
 			double tuitionAmount, LocalDateTime eventStartDate, LocalDateTime eventEndDate, 
 			String eventName, String eventLocation, String eventDescription, 
-			Grade_Format gradeFormat, String workJust, boolean emailProvided) {
+			Grade_Format gradeFormat, Event_Type eventType, String workJust, boolean emailProvided) {
 		
 		TR_Request r = null;
 		try {
@@ -85,7 +85,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (emailProvided)
 				r = new TR_Request(RS.AWAIT_BENCO_APPROVAL, requestId, employee.getEmployeeId(), requestMadeDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
-						workJust, urgent, requestMadeDate);
+						eventType, workJust, urgent, requestMadeDate);
 			else
 				r = new TR_Request(RS.AWAIT_SUPER_APPROVAL, requestId, employee.getEmployeeId(), requestMadeDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
@@ -140,6 +140,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = ps.executeQuery();
 			employees = new ArrayList<>();
 			while (rs.next()) {
+				Employee e = new Employee(rs.getInt("employee_id"), rs.getString("firstname"), rs.getString("lastname"), 
+						rs.getInt("department_id"), rs.getInt("direct_super"),  
+						rs.getString("username"), rs.getString("password"));
 				
 			}
 		return null;
