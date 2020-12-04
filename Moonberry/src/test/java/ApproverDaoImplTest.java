@@ -1,58 +1,72 @@
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.revature.model.Approver_Type;
+import com.revature.dao.ApproverDao;
+import com.revature.daoimpl.ApproverDaoImpl;
+import com.revature.model.Approver;
+import com.revature.model.TR_Request;
 import com.revature.util.ConnFactory;
 
 public class ApproverDaoImplTest {
+	
 	@BeforeClass
-	public static void beforeClas() {
-		int id = 0;
+	public static void beforeClass() {
+		int id = 1;
 		final ConnFactory CF = ConnFactory.getInstance();
 		Connection conn = CF.getConnection();
-		String sql1= "insert into approver values(default,?,?,?,?,?,?)";
-		String sql2= "insert into tr_request values(default,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		String sql3= "insert into department values(default,?,?)";
-		try {
-			//inserts approver
-			PreparedStatement ps1 = conn.prepareStatement(sql1,  Statement.RETURN_GENERATED_KEYS);
-			ps1.setString(1,Approver_Type.DEPARTMENT_HEAD.toString());
-			ps1.setString(2,"Lunar");
-			ps1.setString(3,"Approver");
-			ps1.setString(4,"test");
-			ps1.setString(5,"lapp");
-			ps1.setString(6,"lapp");
-			ps1.executeUpdate();
-			ResultSet keys = ps1.getGeneratedKeys();
-			if (keys.next()) {
-				id = keys.getInt(1);
-			}
-			
-			//inserts department
-			PreparedStatement ps3 = conn.prepareStatement(sql3);
-			ps3.setString(1,"test");
-			ps3.setInt(2, id );
-			
-			//inserts tr_request
-			PreparedStatement ps2 = conn.prepareStatement(sql2);
-			//insert employee
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ApproverDao a = new ApproverDaoImpl();
+//		String sql1= "select * from approver where approver_id = ";
+//		String sql2= "insert into tr_request values(default,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+//		String sql3= "insert into department values(default,?,?)";
+//		try {
+//			//inserts approver
+//			PreparedStatement ps1 = conn.prepareStatement(sql1,  Statement.RETURN_GENERATED_KEYS);
+//			ps1.setString(1,Approver_Type.DEPARTMENT_HEAD.toString());
+//			ps1.setString(2,"Lunar");
+//			ps1.setString(3,"Approver");
+//			ps1.setString(4,"test");
+//			ps1.setString(5,"lapp");
+//			ps1.setString(6,"lapp");
+//			ps1.executeUpdate();
+//			ResultSet keys = ps1.getGeneratedKeys();
+//			if (keys.next()) {
+//				id = keys.getInt(1);
+//			}
+//			
+//			//inserts department
+//			PreparedStatement ps3 = conn.prepareStatement(sql3);
+//			ps3.setString(1,"test");
+//			ps3.setInt(2, id );
+//			
+//			//inserts tr_request
+//			PreparedStatement ps2 = conn.prepareStatement(sql2);
+//			//insert employee
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void getApproverTest() {
+//		String sql= "select * from approver where approver_id= ?";
+//		String sql1= "select * from approver where username= ?";
+		ApproverDao a = new ApproverDaoImpl();
+		Approver myA = a.getApproverById(1);
+		Approver myB = a.getApproverByUsername("blue");
+		assertEquals(myA.getFirstname(),myB.getFirstname());
+		
 	}
-
+	
+	@Test
+	public void approverActionsTest(TR_Request tr) {
+		ApproverDao a = new ApproverDaoImpl();
+		
+	}
 }
+
+

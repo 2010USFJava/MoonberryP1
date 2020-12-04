@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.revature.model.Approver;
 import com.revature.model.RS;
@@ -21,6 +22,11 @@ public interface ApproverDao {
  
   public void updateAmount(TR_Request tr, double amount);
   
+  public TR_Request getRequestById(int id);
+  
+  public TR_Request getRequestByEmployeeId(int id);
+  
+  public List<TR_Request> getAllRequests();
   //public void 
   
   

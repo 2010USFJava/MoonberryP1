@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.revature.dao.ApproverDao;
 import com.revature.model.Approver;
@@ -14,6 +15,7 @@ import com.revature.util.ConnFactory;
 
 public class ApproverDaoImpl implements ApproverDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
+	ApproverDao a = new ApproverDaoImpl();
 
 	/*
 	 * takes in request object and response code enum and updates the response code
@@ -131,6 +133,24 @@ public class ApproverDaoImpl implements ApproverDao {
 			e.printStackTrace();
 		}
 		// TODO log this, optional: include the id of the employeee and approver
+	}
+
+	@Override
+	public TR_Request getRequestById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TR_Request getRequestByEmployeeId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TR_Request> getAllRequests() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
