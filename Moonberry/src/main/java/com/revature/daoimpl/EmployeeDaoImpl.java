@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
@@ -35,8 +37,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 * @param workJust: Justification for reimbursement.
 	 * @return null if the request is invalid.
 	 */
-	public TR_Request makeRequest(Employee employee, Event_Type eventType, LocalDate requestDate, 
-			double tuitionAmount, LocalDate eventStartDate, LocalDate eventEndDate, 
+	public TR_Request makeRequest(Employee employee, Event_Type eventType, LocalDateTime requestMadeDate, 
+			double tuitionAmount, LocalDateTime eventStartDate, LocalDateTime eventEndDate, 
 			String eventName, String eventLocation, String eventDescription, 
 			Grade_Format gradeFormat, String workJust, boolean emailProvided) {
 		
@@ -50,7 +52,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 												employee.getAvailRmbsment());
 			employee.setAvailRmbsment(employee.getAvailRmbsment() - projectedRmbsment);
 
-			long daysUntilStart = requestDate.until(eventEndDate, ChronoUnit.DAYS);
+			long daysUntilStart = requestMadeDate.until(eventEndDate, ChronoUnit.DAYS);
 			if (daysUntilStart < 7) {
 				return null;
 			}
@@ -61,9 +63,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			else
 				ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
 			ps.setInt(2, employee.getEmployeeId());
-			ps.setDate(3, Date.valueOf(requestDate));
-			ps.setDate(4, Date.valueOf(eventStartDate));
-			ps.setDate(5, Date.valueOf(eventEndDate));
+		
+			ps.setObject(3, requestMadeDate);
+			ps.setObject(4, eventStartDate);
+			ps.setObject(5, eventEndDate);
 			ps.setString(6, eventName);
 			ps.setString(7, eventLocation);
 			ps.setString(8, eventDescription);
@@ -73,20 +76,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setString(12, eventType.toString().toLowerCase());
 			ps.setString(13, workJust);
 			ps.setBoolean(13, urgent);
-			ps.setBoolean(13, urgent);
+			ps.setObject(13, requestMadeDate);
 			ps.executeUpdate();
 			ResultSet keys = ps.getGeneratedKeys();
 			int requestId = -1;
 			if (keys.next())
 				requestId = keys.getInt(1);
 			if (emailProvided)
-				r = new TR_Request(RS.AWAIT_BENCO_APPROVAL, -1, employee.getEmployeeId(), requestDate, eventName,
+				r = new TR_Request(RS.AWAIT_BENCO_APPROVAL, requestId, employee.getEmployeeId(), requestMadeDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
-						workJust, urgent, requestDate);
+						workJust, urgent, requestMadeDate);
 			else
-				r = new TR_Request(RS.AWAIT_SUPER_APPROVAL, -1, employee.getEmployeeId(), requestDate, eventName,
+				r = new TR_Request(RS.AWAIT_SUPER_APPROVAL, requestId, employee.getEmployeeId(), requestMadeDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
-						workJust, urgent, requestDate);
+						workJust, urgent, requestMadeDate);
 			r.setRmbsmentAmount(projectedRmbsment);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -119,14 +122,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		return e;
 	}
+	
 	@Override
-	public List<Employee> findAll() {
+	public Employee findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Employee> findAll() {
+		List<Employee> employees = null;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from employee";
+			PreparedStatement ps;
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			employees = new ArrayList<>();
+			while (rs.next()) {
+				
+			}
+		return null;
+	}
+	
 	@Override
 	public Employee findByRequest(TR_Request r) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	@Override
@@ -139,4 +160,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }
