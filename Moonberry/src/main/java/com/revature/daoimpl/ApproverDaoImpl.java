@@ -20,7 +20,7 @@ import com.revature.util.ConnFactory;
 
 public class ApproverDaoImpl implements ApproverDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
-	ApproverDao a = new ApproverDaoImpl();
+	
 
 	/*
 	 * takes in request object and response code enum and updates the response code
@@ -148,10 +148,10 @@ public class ApproverDaoImpl implements ApproverDao {
 			Connection conn = cf.getConnection();
 			String sql = "select * from tr_request where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
+			ps.setInt(1, id); 
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(2),RS.valueOf(Integer.toString(rs.getInt(1))),rs.getInt(3), 
+				tr = new TR_Request(rs.getInt(1),RS.(Integer.toString(rs.getInt(2))),rs.getInt(3), 
 						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
 						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
 						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
