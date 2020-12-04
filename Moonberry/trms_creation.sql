@@ -4,7 +4,8 @@ drop table employee;
 drop table tr_request;
 --drop type "position";
 drop table status_code;
-
+select * from tr_request;
+select * from employee;
 create type grade_format as enum('letter','pass_fail','percentage','completion');
 create type event_type as enum('university_course','seminar','cert_prep_course','cert','tech_training','other');
 create type approver_type as enum('supervisor','department_head','ben_co');
@@ -69,9 +70,9 @@ create table tr_request(
     request_id serial primary key,
 	request_status int,
 	employee_id int not null,
-	request_made_date timestamp default now(),
-	event_start_date timestamp not null,
-	event_end_date timestamp not null,
+	request_made_date timestamp without time zone default now(),
+	event_start_date timestamp without time zone not null,
+	event_end_date timestamp without time zone not null,
 	event_name varchar(50) not null,
 	event_location varchar(50) not null,
 	event_description text default null,
@@ -81,7 +82,7 @@ create table tr_request(
 	event_type event_type not null,
 	work_just text not null,
 	urgent boolean default false,
-	request_arrival_date timestamp,
+	request_arrival_date timestamp without time zone,
 
 	foreign key(employee_id) references employee(employee_id),
 	foreign key(request_status) references status_code(code)
@@ -132,8 +133,8 @@ insert into tr_request
 		1,
 		1,
 		default,
-		'2019-05-05',
-		'2019-05-22',
+		'2019-05-05 04:05:06',
+		'2019-05-22 04:05:06',
 		'testing',
 		'here',
 		'more testing',
@@ -141,6 +142,7 @@ insert into tr_request
 		5.00,
 		'pass_fail',
 		'other',
+		'am broke',
 		false,
-		null
+		'2019-05-22 04:05:06'
 	);

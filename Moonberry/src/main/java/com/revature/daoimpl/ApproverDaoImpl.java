@@ -91,7 +91,7 @@ public class ApproverDaoImpl implements ApproverDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2)), rs.getString(3),
+				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 			}
 		} catch (SQLException e) {
@@ -151,12 +151,13 @@ public class ApproverDaoImpl implements ApproverDao {
 			ps.setInt(1, id); 
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(1),RS.(Integer.toString(rs.getInt(2))),rs.getInt(3), 
-						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
-						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
+				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
+						rs.getTimestamp(4).toLocalDateTime(),
+						rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
 						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
 						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
+						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,12 +176,13 @@ public class ApproverDaoImpl implements ApproverDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(2),RS.valueOf(Integer.toString(rs.getInt(1))),rs.getInt(3), 
-						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
-						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
+				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
+						rs.getTimestamp(4).toLocalDateTime(),
+						rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
 						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
 						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
+						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
 				trList.add(tr);
 			}
 		} catch (SQLException e) {
@@ -199,12 +201,13 @@ public class ApproverDaoImpl implements ApproverDao {
 			Statement ps = conn.createStatement();
 			ResultSet rs = ps.executeQuery(sql);
 			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(2),RS.valueOf(Integer.toString(rs.getInt(1))),rs.getInt(3), 
-						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
-						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
+				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
+						rs.getTimestamp(4).toLocalDateTime(),
+						rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
 						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
 						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
+						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
 				trList.add(tr);
 			}
 		} catch (SQLException e) {
