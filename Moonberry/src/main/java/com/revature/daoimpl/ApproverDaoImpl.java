@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.dao.ApproverDao;
@@ -141,15 +142,15 @@ public class ApproverDaoImpl implements ApproverDao {
 
 	@Override
 	public TR_Request getRequestById(int id) {
+		TR_Request tr = null;
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "select * from tr_request where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			TR_Request tr = null;
 			while(rs.next()) {
-				tr = new TR_Request(RS.rs.getInt(1),rs.getInt(2),rs.getInt(3), 
+				tr = new TR_Request(rs.getInt(2),RS.valueOf(Integer.toString(rs.getInt(1))),rs.getInt(3), 
 						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
 						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
 						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
@@ -157,16 +158,34 @@ public class ApproverDaoImpl implements ApproverDao {
 						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return tr;
 	}
 
 	@Override
-	public TR_Request getRequestByEmployeeId(int id) {
-		Connection conn = cf.getConnection();
-		return null;
+	public List<TR_Request>getRequestByEmployeeId(int id) {
+		TR_Request tr = null;
+		List<TR_Request> trList = new ArrayList<TR_Request>();
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request where request_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				tr = new TR_Request(rs.getInt(2),RS.valueOf(Integer.toString(rs.getInt(1))),rs.getInt(3), 
+						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
+						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
+						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
+						Grade_Format.valueOf(rs.getString(12)), Event_Type.valueOf(rs.getString(13)),
+						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
+				trList.add(tr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tr;
 	}
 
 	@Override

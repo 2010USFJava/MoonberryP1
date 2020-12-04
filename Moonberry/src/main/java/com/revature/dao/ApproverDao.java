@@ -24,7 +24,7 @@ public interface ApproverDao {
 
 	public TR_Request getRequestById(int id);
 
-	public TR_Request getRequestByEmployeeId(int id);
+	public List<TR_Request> getRequestByEmployeeId(int id);
 
 	public List<TR_Request> getAllRequests();
 	
