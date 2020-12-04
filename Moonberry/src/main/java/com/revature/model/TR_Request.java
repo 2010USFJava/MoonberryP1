@@ -17,6 +17,7 @@ public class TR_Request {
 	private double tuitionAmount;
 	private double rmbsmentAmount;
 	private Grade_Format gradeF;
+	private Event_Type eventT;
 	private String workJust;
 	private boolean urgent;
 	private LocalDateTime requestArrivalDate;
@@ -27,11 +28,12 @@ public class TR_Request {
 	}
 
 
-	public TR_Request(RS requestStatus, int requestId, int employeeId, LocalDateTime requestMadeDate, 
-			String eventName, String eventLocation, String eventDescription,
-			LocalDateTime eventStartDate, LocalDateTime eventEndDate, double tuitionAmount, Grade_Format gradeF,
-			String workJust, boolean urgent, LocalDateTime requestArrivalDate) {
 
+
+	public TR_Request(RS requestStatus, int requestId, int employeeId, LocalDateTime requestMadeDate, String eventName,
+			String eventLocation, String eventDescription, LocalDateTime eventStartDate, LocalDateTime eventEndDate,
+			double tuitionAmount, double rmbsmentAmount, Grade_Format gradeF, Event_Type eventT, String workJust,
+			boolean urgent, LocalDateTime requestArrivalDate) {
 		super();
 		this.requestStatus = requestStatus;
 		this.requestId = requestId;
@@ -43,12 +45,51 @@ public class TR_Request {
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.tuitionAmount = tuitionAmount;
-		this.rmbsmentAmount = 0.0;
+		this.rmbsmentAmount = rmbsmentAmount;
 		this.gradeF = gradeF;
+		this.eventT = eventT;
 		this.workJust = workJust;
 		this.urgent = urgent;
 		this.requestArrivalDate = requestArrivalDate;
 	}
+
+
+
+
+	public Event_Type getEventT() {
+		return eventT;
+	}
+
+
+
+
+	public void setEventT(Event_Type eventT) {
+		this.eventT = eventT;
+	}
+
+
+
+
+	public LocalDateTime getRequestArrivalDate() {
+		return requestArrivalDate;
+	}
+
+
+
+
+	public void setRequestArrivalDate(LocalDateTime requestArrivalDate) {
+		this.requestArrivalDate = requestArrivalDate;
+	}
+
+
+
+
+	public void setRequestMadeDate(LocalDateTime requestMadeDate) {
+		this.requestMadeDate = requestMadeDate;
+	}
+
+
+
 
 	public RS getRequestStatus() {
 		return requestStatus;
