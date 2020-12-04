@@ -26,4 +26,13 @@ public enum RS {
 		return this.statusCode;
 	}
 	
+	public static RS valueOfStatusCode(int status) {
+		for (RS rs : values()) {
+			if (rs.getStatusCode() == status) {
+				return rs;
+			}
+		}
+		return null;
+	}
+	
 }
