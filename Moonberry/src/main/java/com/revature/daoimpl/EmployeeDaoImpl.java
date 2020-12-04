@@ -43,7 +43,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		TR_Request r = null;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "insert into tr_request values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into tr_request values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			double projectedRmbsment = Math.min(tuitionAmount * eventType.getRmbsmentCoverage(),
@@ -73,6 +73,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setString(12, eventType.toString().toLowerCase());
 			ps.setString(13, workJust);
 			ps.setBoolean(13, urgent);
+			ps.setBoolean(13, urgent);
 			ps.executeUpdate();
 			ResultSet keys = ps.getGeneratedKeys();
 			int requestId = -1;
@@ -81,11 +82,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (emailProvided)
 				r = new TR_Request(RS.AWAIT_BENCO_APPROVAL, -1, employee.getEmployeeId(), requestDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
-						workJust, urgent);
+						workJust, urgent, requestDate);
 			else
 				r = new TR_Request(RS.AWAIT_SUPER_APPROVAL, -1, employee.getEmployeeId(), requestDate, eventName,
 						eventLocation, eventDescription, eventStartDate, eventEndDate, tuitionAmount, gradeFormat,
-						workJust, urgent);
+						workJust, urgent, requestDate);
 			r.setRmbsmentAmount(projectedRmbsment);
 		} catch (SQLException e) {
 			e.printStackTrace();
