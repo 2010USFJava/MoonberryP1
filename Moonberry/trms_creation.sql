@@ -1,5 +1,5 @@
 --reset lines
---drop table employee;
+drop table employee;
 --drop type grade_format;
 drop table tr_request;
 --drop type "position";
@@ -69,17 +69,19 @@ create table tr_request(
     request_id serial primary key,
 	request_status int,
 	employee_id int not null,
-	request_date date default now(),
-	event_start_date date not null,
-	event_end_date date not null,
+	request_made_date timestamp default now(),
+	event_start_date timestamp not null,
+	event_end_date timestamp not null,
 	event_name varchar(50) not null,
 	event_location varchar(50) not null,
 	event_description text default null,
 	tuition_amount numeric(6,2) default 0.00 not null,
+	rmbsment_amount numeric(6,2),
 	grade_format grade_format not null,
 	event_type event_type not null,
 	work_just text not null,
 	urgent boolean default false,
+	request_arrival_date timestamp,
 
 	foreign key(employee_id) references employee(employee_id),
 	foreign key(request_status) references status_code(code)
@@ -93,3 +95,52 @@ create table logs
     level   varchar(10)    not null,
     message varchar(1000)  not null
    );
+   
+ insert into approver 
+ values(
+ 	default,
+ 	'department_head',
+ 	'Lunar',
+ 	'Approver',
+ 	'test',
+ 	'lapp',
+ 	'lapp'
+ );
+insert into department
+ values(
+ 	default,
+ 	'test',
+ 	1
+ );
+ 
+insert into employee 
+	values( 
+		default,
+		'Blue',
+		'Moon',
+		1,
+		default,
+		1,
+		'blue',
+		'moon'
+		
+	);
+	
+insert into tr_request
+	values( 
+		default,
+		1,
+		1,
+		default,
+		'2019-05-05',
+		'2019-05-22',
+		'testing',
+		'here',
+		'more testing',
+		50.00,
+		5.00,
+		'pass_fail',
+		'other',
+		false,
+		null
+	);

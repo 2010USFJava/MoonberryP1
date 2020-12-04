@@ -4,30 +4,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import com.revature.dao.ApproverDao;
 import com.revature.model.Approver;
 import com.revature.model.Approver_Type;
+import com.revature.model.Event_Type;
+import com.revature.model.Grade_Format;
 import com.revature.model.RS;
 import com.revature.model.TR_Request;
 import com.revature.util.ConnFactory;
 
 public class ApproverDaoImpl implements ApproverDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
+	ApproverDao a = new ApproverDaoImpl();
 
 	/*
 	 * takes in request object and response code enum and updates the response code
 	 * for that row in the db table
 	 */
 	@Override
-	public void setApprovalStatus(RS rs, TR_Request tr) {
+	public void setApprovalStatus(RS rs, TR_Request tr, LocalDateTime actionDate) {
 		try {
 			tr.setRequestStatus(rs);
 			Connection conn = cf.getConnection();
-			String sql = "update tr_request set request_status= ? where request_id = ?";
+			String sql = "update tr_request set request_status= ?, request_arrival_date = ?  where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, rs.getStatusCode());
 			ps.setInt(2, tr.getRequestId());
+			ps.setObject(3, actionDate);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,8 +44,8 @@ public class ApproverDaoImpl implements ApproverDao {
 	}
 
 	@Override
-	public void requestInfo(TR_Request tr) {
-		setApprovalStatus(RS.ADD_INFO_REQUESTED, tr);
+	public void requestInfo(TR_Request tr, LocalDateTime actionDate) {
+		setApprovalStatus(RS.ADD_INFO_REQUESTED, tr, actionDate);
 		// TODO:Send message to employee that additional info is requested
 		// TODO: log this
 
@@ -131,6 +137,42 @@ public class ApproverDaoImpl implements ApproverDao {
 			e.printStackTrace();
 		}
 		// TODO log this, optional: include the id of the employeee and approver
+	}
+
+	@Override
+	public TR_Request getRequestById(int id) {
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request where request_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			TR_Request tr = null;
+			while(rs.next()) {
+				tr = new TR_Request(RS.rs.getInt(1),rs.getInt(2),rs.getInt(3), 
+						(LocalDateTime)rs.getObject(4),(LocalDateTime)rs.getObject(5),
+						(LocalDateTime)rs.getObject(6), rs.getString(7),rs.getString(8),
+						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
+						Grade_Format.valueOf(rs.getString(12)), Event_Type.valueOf(rs.getString(13)),
+						rs.getString(14),rs.getBoolean(15),(LocalDateTime)rs.getObject(16));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public TR_Request getRequestByEmployeeId(int id) {
+		Connection conn = cf.getConnection();
+		return null;
+	}
+
+	@Override
+	public List<TR_Request> getAllRequests() {
+		Connection conn = cf.getConnection();
+		return null;
 	}
 
 }
