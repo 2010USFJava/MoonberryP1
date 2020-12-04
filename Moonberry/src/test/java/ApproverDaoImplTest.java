@@ -1,6 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -8,6 +11,7 @@ import org.junit.Test;
 import com.revature.dao.ApproverDao;
 import com.revature.daoimpl.ApproverDaoImpl;
 import com.revature.model.Approver;
+import com.revature.model.RS;
 import com.revature.model.TR_Request;
 import com.revature.util.ConnFactory;
 
@@ -55,7 +59,7 @@ public class ApproverDaoImplTest {
 	public void getApproverTest() {
 		ApproverDao a = new ApproverDaoImpl();
 		Approver myA = a.getApproverById(1);
-		Approver myB = a.getApproverByUsername("blue");
+		Approver myB = a.getApproverByUsername("Blue");
 		assertEquals(myA.getFirstname(),myB.getFirstname());
 		
 	}
@@ -63,8 +67,10 @@ public class ApproverDaoImplTest {
 	@Test
 	public void approverActionsTest() {
 		ApproverDao a = new ApproverDaoImpl();
-		
-		
+		TR_Request t = a.getRequestById(1);
+		LocalDateTime f = LocalDateTime.of(LocalDate.of(2020, 10, 10), LocalTime.now());
+		a.setApprovalStatus(RS.AWAIT_SUPER_APPROVAL, t , f );
+		assertEquals(a.getRequestById(1).getRequestStatus(),RS.AWAIT_SUPER_APPROVAL);
 	}
 
 }
