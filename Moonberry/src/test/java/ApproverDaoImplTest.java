@@ -53,8 +53,6 @@ public class ApproverDaoImplTest {
 
 	@Test
 	public void getApproverTest() {
-//		String sql= "select * from approver where approver_id= ?";
-//		String sql1= "select * from approver where username= ?";
 		ApproverDao a = new ApproverDaoImpl();
 		Approver myA = a.getApproverById(1);
 		Approver myB = a.getApproverByUsername("blue");
@@ -63,10 +61,12 @@ public class ApproverDaoImplTest {
 	}
 	
 	@Test
-	public void approverActionsTest(TR_Request tr) {
+	public void approverActionsTest() {
 		ApproverDao a = new ApproverDaoImpl();
 		
+		
 	}
+
 }
 
 
