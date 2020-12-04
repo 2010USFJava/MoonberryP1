@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,8 @@ public class ApproverDaoImpl implements ApproverDao {
 			String sql = "update tr_request set request_status= ?, request_arrival_date = ?  where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, rs.getStatusCode());
-			ps.setInt(2, tr.getRequestId());
-			ps.setObject(3, actionDate);
+			ps.setInt(3, tr.getRequestId());
+			ps.setTimestamp(2, Timestamp.valueOf(actionDate) );
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,13 +59,13 @@ public class ApproverDaoImpl implements ApproverDao {
 		Approver myApprover = null;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select * from approver where approver_id = ?";
+			String sql = "select * from approver where username  = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2)), rs.getString(3),
+				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 			}
 

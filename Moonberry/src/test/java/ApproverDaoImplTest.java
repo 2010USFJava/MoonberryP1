@@ -59,7 +59,7 @@ public class ApproverDaoImplTest {
 	public void getApproverTest() {
 		ApproverDao a = new ApproverDaoImpl();
 		Approver myA = a.getApproverById(1);
-		Approver myB = a.getApproverByUsername("Blue");
+		Approver myB = a.getApproverByUsername("lapp");
 		assertEquals(myA.getFirstname(),myB.getFirstname());
 		
 	}
@@ -70,7 +70,7 @@ public class ApproverDaoImplTest {
 		TR_Request t = a.getRequestById(1);
 		LocalDateTime f = LocalDateTime.of(LocalDate.of(2020, 10, 10), LocalTime.now());
 		a.setApprovalStatus(RS.AWAIT_SUPER_APPROVAL, t , f );
-		assertEquals(a.getRequestById(1).getRequestStatus(),RS.AWAIT_SUPER_APPROVAL);
+		assertEquals(RS.AWAIT_SUPER_APPROVAL,a.getRequestById(1).getRequestStatus());
 	}
 
 }
