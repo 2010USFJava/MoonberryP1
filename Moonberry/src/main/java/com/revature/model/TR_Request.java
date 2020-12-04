@@ -5,15 +5,15 @@ import java.time.LocalDateTime;
 
 public class TR_Request {
 
-	private RS requestStatus;
 	private int requestId;
+	private RS requestStatus;
 	private int employeeId;
 	private LocalDateTime requestMadeDate;
+	private LocalDateTime eventStartDate;
+	private LocalDateTime eventEndDate;
 	private String eventName;
 	private String eventLocation;
 	private String eventDescription;
-	private LocalDateTime eventStartDate;
-	private LocalDateTime eventEndDate;
 	private double tuitionAmount;
 	private double rmbsmentAmount;
 	private Grade_Format gradeF;
@@ -21,29 +21,26 @@ public class TR_Request {
 	private String workJust;
 	private boolean urgent;
 	private LocalDateTime requestArrivalDate;
-	
+
 	public TR_Request() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
-	public TR_Request(RS requestStatus, int requestId, int employeeId, LocalDateTime requestMadeDate, String eventName,
-			String eventLocation, String eventDescription, LocalDateTime eventStartDate, LocalDateTime eventEndDate,
-			double tuitionAmount, double rmbsmentAmount, Grade_Format gradeF, Event_Type eventT, String workJust,
-			boolean urgent, LocalDateTime requestArrivalDate) {
+	public TR_Request(int requestId, RS requestStatus, int employeeId, LocalDateTime requestMadeDate,
+			LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventName, String eventLocation,
+			String eventDescription, double tuitionAmount, double rmbsmentAmount, Grade_Format gradeF,
+			Event_Type eventT, String workJust, boolean urgent, LocalDateTime requestArrivalDate) {
 		super();
-		this.requestStatus = requestStatus;
 		this.requestId = requestId;
+		this.requestStatus = requestStatus;
 		this.employeeId = employeeId;
 		this.requestMadeDate = requestMadeDate;
+		this.eventStartDate = eventStartDate;
+		this.eventEndDate = eventEndDate;
 		this.eventName = eventName;
 		this.eventLocation = eventLocation;
 		this.eventDescription = eventDescription;
-		this.eventStartDate = eventStartDate;
-		this.eventEndDate = eventEndDate;
 		this.tuitionAmount = tuitionAmount;
 		this.rmbsmentAmount = rmbsmentAmount;
 		this.gradeF = gradeF;
@@ -53,43 +50,25 @@ public class TR_Request {
 		this.requestArrivalDate = requestArrivalDate;
 	}
 
-
-
-
 	public Event_Type getEventT() {
 		return eventT;
 	}
-
-
-
 
 	public void setEventT(Event_Type eventT) {
 		this.eventT = eventT;
 	}
 
-
-
-
 	public LocalDateTime getRequestArrivalDate() {
 		return requestArrivalDate;
 	}
-
-
-
 
 	public void setRequestArrivalDate(LocalDateTime requestArrivalDate) {
 		this.requestArrivalDate = requestArrivalDate;
 	}
 
-
-
-
 	public void setRequestMadeDate(LocalDateTime requestMadeDate) {
 		this.requestMadeDate = requestMadeDate;
 	}
-
-
-
 
 	public RS getRequestStatus() {
 		return requestStatus;
@@ -110,7 +89,6 @@ public class TR_Request {
 	public int getEmployeeId() {
 		return employeeId;
 	}
-
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
@@ -180,7 +158,6 @@ public class TR_Request {
 		this.rmbsmentAmount = rmbsmentAmount;
 	}
 
-
 	public Grade_Format getGradeF() {
 		return gradeF;
 	}
@@ -205,20 +182,15 @@ public class TR_Request {
 		this.urgent = urgent;
 	}
 
-
 	@Override
 	public String toString() {
-		return "TR_Request [requestStatus=" + requestStatus + ", requestId=" + requestId + ", employeeId=" + employeeId
-				+ ", requestMadeDate=" + requestMadeDate + ", eventName=" + eventName + ", eventLocation="
-				+ eventLocation + ", eventDescription=" + eventDescription + ", eventStartDate=" + eventStartDate
-				+ ", eventEndDate=" + eventEndDate + ", tuitionAmount=" + tuitionAmount + ", rmbsmentAmount="
-				+ rmbsmentAmount + ", gradeF=" + gradeF + ", workJust=" + workJust + ", urgent=" + urgent
+		return "TR_Request [requestId=" + requestId + ", requestStatus=" + requestStatus + ", employeeId=" + employeeId
+				+ ", requestMadeDate=" + requestMadeDate + ", eventStartDate=" + eventStartDate + ", eventEndDate="
+				+ eventEndDate + ", eventName=" + eventName + ", eventLocation=" + eventLocation + ", eventDescription="
+				+ eventDescription + ", tuitionAmount=" + tuitionAmount + ", rmbsmentAmount=" + rmbsmentAmount
+				+ ", gradeF=" + gradeF + ", eventT=" + eventT + ", workJust=" + workJust + ", urgent=" + urgent
 				+ ", requestArrivalDate=" + requestArrivalDate + "]";
 	}
 
-
-
-	
-	
 	
 }
