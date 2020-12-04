@@ -114,6 +114,15 @@ public class Employee {
 	public int getDepartmentId() {
 		return departmentId;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", departmentId=" + departmentId + ", availRmbsment=" + availRmbsment + ", directSuper=" + directSuper
+				+ ", username=" + username + ", password=" + password + ", requests=" + requests + "]";
+	}
+	
 	
 	
 }

@@ -12,10 +12,10 @@ import com.revature.model.TR_Request;
 
 public interface EmployeeDao {
 	//TODO save files to database
-	public TR_Request makeRequest(Employee employee, Event_Type eventType, LocalDateTime requestMadeDate, 
-			double requestAmount, LocalDateTime eventStartDate, LocalDateTime eventEndDate, 
+	public TR_Request makeRequest(Employee employee, LocalDateTime requestMadeDate, 
+			double tuitionAmount, LocalDateTime eventStartDate, LocalDateTime eventEndDate, 
 			String eventName, String eventLocation, String eventDescription, 
-			Grade_Format gradeFormat, String workJust, boolean emailProvided);
+			Grade_Format gradeFormat, Event_Type eventType, String workJust, boolean emailProvided);
 	
 	public Employee findById(int id);
 	public Employee findByUsername(String username);
