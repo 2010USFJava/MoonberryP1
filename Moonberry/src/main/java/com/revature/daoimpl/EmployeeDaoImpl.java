@@ -129,8 +129,27 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee e = null;
+		ApproverDao a = new ApproverDaoImpl();
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from employee where username=?";
+			PreparedStatement ps;
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				e = new Employee(rs.getInt("employee_id"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("department_id"),
+						rs.getInt("direct_super"), rs.getString("username"), rs.getString("password"));
+				e.setAvailRmbsment(rs.getDouble("avail_rmbsment"));
+				e.setRequests((ArrayList<TR_Request>) a.getRequestByEmployeeId(rs.getInt("employee_id")));
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return e;
 	}
 
 	@Override
