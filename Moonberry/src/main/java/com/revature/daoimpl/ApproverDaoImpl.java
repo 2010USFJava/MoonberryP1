@@ -47,14 +47,6 @@ public class ApproverDaoImpl implements ApproverDao {
 	}
 
 	@Override
-	public void requestInfo(TR_Request tr, LocalDateTime actionDate) {
-		setApprovalStatus(RS.ADD_INFO_REQUESTED, tr, actionDate);
-		// TODO:Send message to employee that additional info is requested
-		// TODO: log this
-
-	}
-
-	@Override
 	public Approver getApproverByUsername(String username) {
 		Approver myApprover = null;
 		try {
@@ -111,7 +103,7 @@ public class ApproverDaoImpl implements ApproverDao {
 	public void newApprover(Approver a) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "insert into approver values(default,?,?,?,?,?,?)";
+			String sql = "insert into approver values(default,CAST(? AS approver_type),?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, a.getAtype().toString().toLowerCase());
 			ps.setString(2, a.getFirstname());

@@ -72,6 +72,12 @@ public class ApproverDaoImplTest {
 		a.setApprovalStatus(RS.AWAIT_SUPER_APPROVAL, t , f );
 		assertEquals(RS.AWAIT_SUPER_APPROVAL,a.getRequestById(1).getRequestStatus());
 	}
+	
+	@Test
+	public void makeApprover() {
+		ApproverDao a = new ApproverDaoImpl();
+		Approver myA = a.newApprover(a);
+	}
 
 }
 
