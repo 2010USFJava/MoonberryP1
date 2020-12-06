@@ -209,4 +209,10 @@ public class ApproverDaoImpl implements ApproverDao {
 		return trList;
 	}
 
+	@Override
+	public void autoApproveRequests(LocalDateTime date) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

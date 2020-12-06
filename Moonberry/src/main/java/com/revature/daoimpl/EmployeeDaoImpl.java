@@ -59,13 +59,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			long daysUntilStart = requestMadeDate.until(eventStartDate, ChronoUnit.DAYS);
 			if (daysUntilStart < 7) {
 				return null;
+				//TODO: Exception may be thrown :D 
 			}
 			boolean urgent = (daysUntilStart < 14);
 
 			if (emailProvided)
 				ps.setInt(1, RS.AWAIT_BENCO_APPROVAL.getStatusCode());
-			else
+			else {
+				
 				ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
+			}
+				
 			ps.setInt(2, employee.getEmployeeId());
 
 			ps.setTimestamp(3, Timestamp.valueOf(requestMadeDate));
@@ -103,6 +107,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return r;
 		// TODO: Log creation of request
+	}
+	
+	@Override 
+	public boolean isSuperAlsoDptHead(Employee e) {
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select department_head from department where department_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, e.getDepartmentId());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("department_head") == e.getDirectSuper();
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
