@@ -56,7 +56,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			double projectedRmbsment = Math.min(tuitionAmount * eventType.getRmbsmentCoverage(),
 					employee.getAvailRmbsment());
 
-			long daysUntilStart = requestMadeDate.until(eventEndDate, ChronoUnit.DAYS);
+			long daysUntilStart = requestMadeDate.until(eventStartDate, ChronoUnit.DAYS);
 			if (daysUntilStart < 7) {
 				return null;
 			}
@@ -77,7 +77,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setDouble(9, tuitionAmount);
 			ps.setDouble(10, projectedRmbsment);
 			ps.setString(11, gradeFormat.toString().toLowerCase());
-			ps.setString(12, Event_Type.OTHER.toString().toLowerCase());
+			ps.setString(12, eventType.toString().toLowerCase());
 			ps.setString(13, workJust);
 			ps.setBoolean(14, urgent);
 			ps.setTimestamp(15, Timestamp.valueOf(requestMadeDate));
@@ -94,7 +94,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				r = new TR_Request(requestId, RS.AWAIT_SUPER_APPROVAL, employee.getEmployeeId(), requestMadeDate,
 						eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, tuitionAmount,
 						projectedRmbsment, gradeFormat, eventType, workJust, urgent, requestMadeDate);
-			employee.setAvailRmbsment(employee.getAvailRmbsment() - projectedRmbsment);
+			double newAvailRmbsment = employee.getAvailRmbsment() - projectedRmbsment;
+			employee.setAvailRmbsment(newAvailRmbsment);
+			this.update(employee, newAvailRmbsment);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -221,6 +223,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 	}
 
-	//TODO: Update employee available reimbursement
-	
+	@Override
+	public void update(Employee e, double newAvailRmbsment) {
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "update employee set avail_rmbsment=? where employee_id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, e.getAvailRmbsment());
+			ps.setInt(2, e.getEmployeeId());
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
 }

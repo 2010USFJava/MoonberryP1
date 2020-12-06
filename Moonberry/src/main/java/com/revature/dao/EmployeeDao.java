@@ -24,5 +24,6 @@ public interface EmployeeDao {
 	public List<TR_Request> findEmployeeRequests(Employee e);
 	
 	public void insert(Employee e);
+	public void update(Employee e, double newAvailRmbsment);
 	
 }
