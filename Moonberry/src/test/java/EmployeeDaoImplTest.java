@@ -13,6 +13,8 @@ import com.revature.dao.EmployeeDao;
 import com.revature.daoimpl.ApproverDaoImpl;
 import com.revature.daoimpl.EmployeeDaoImpl;
 import com.revature.model.Employee;
+import com.revature.model.Event_Type;
+import com.revature.model.Grade_Format;
 import com.revature.model.TR_Request;
 
 public class EmployeeDaoImplTest {
@@ -31,13 +33,39 @@ public class EmployeeDaoImplTest {
 		assertNotNull(e.findByRequest(request));
 	}
 	
-	@
+	@Test
+	public void getRequestsFromEmployeeTest() {
+		EmployeeDao e = new EmployeeDaoImpl();
+		Employee blue = e.findById(1);
+		assertNotNull(e.findEmployeeRequests(blue));
+		
+	}
 	
 	@Test
 	public void makeRequestTest() {
 		EmployeeDao e = new EmployeeDaoImpl();
 		Employee employee = e.findByUsername("blue");
 		LocalDateTime requestMadeDate = LocalDateTime.of(LocalDate.of(1998, 05, 03), LocalTime.now());
-		//e.makeRequest(null, requestMadeDate, tuitionAmount, eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, gradeFormat, eventType, workJust, emailProvided)
+		double tuitionAmount = 300;
+		LocalDateTime eventStartDate = LocalDateTime.of(LocalDate.of(1998, 05, 13), LocalTime.now());
+		LocalDateTime eventEndDate = LocalDateTime.of(LocalDate.of(1998, 07, 17), LocalTime.now());
+		String eventName = "Operating Systems 101";
+		String eventLocation = "Old Stinky University";
+		String eventDescription = "We gonna learn about operating systems!";
+		Grade_Format gradeFormat = Grade_Format.LETTER;
+		Event_Type eventType = Event_Type.UNIVERSITY_COURSE;
+		String workJust = "This course will help me understand why unix is cool";
+		boolean emailProvided = false;
+		TR_Request request = e.makeRequest(employee, requestMadeDate, tuitionAmount, eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, gradeFormat, eventType, workJust, emailProvided);
+		assertNotNull(request);
 	}
+	
+	
+//	@Test 
+//	public void insertEmployeeTest() {
+//		EmployeeDao e = new EmployeeDaoImpl();
+//		Employee bob = new Employee(-1, "bob", "smith", 1, 1, "boba", "1234");
+//		e.insert(bob);
+//		assertNotNull(e.findByUsername("boba"));
+//	}
 }

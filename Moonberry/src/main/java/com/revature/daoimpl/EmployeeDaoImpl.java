@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -49,8 +50,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		TR_Request r = null;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "insert into tr_request values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			String sql = "insert into tr_request values(default,?,?,?,?,?,?,?,?,?,?,CAST(? AS grade_format),CAST(? AS event_type),?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);//, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			double projectedRmbsment = Math.min(tuitionAmount * eventType.getRmbsmentCoverage(),
 					employee.getAvailRmbsment());
@@ -67,19 +68,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
 			ps.setInt(2, employee.getEmployeeId());
 
-			ps.setObject(3, requestMadeDate);
-			ps.setObject(4, eventStartDate);
-			ps.setObject(5, eventEndDate);
+			ps.setTimestamp(3, Timestamp.valueOf(requestMadeDate));
+			ps.setTimestamp(4, Timestamp.valueOf(eventStartDate));
+			ps.setTimestamp(5, Timestamp.valueOf(eventEndDate));
 			ps.setString(6, eventName);
 			ps.setString(7, eventLocation);
 			ps.setString(8, eventDescription);
 			ps.setDouble(9, tuitionAmount);
 			ps.setDouble(10, projectedRmbsment);
 			ps.setString(11, gradeFormat.toString().toLowerCase());
-			ps.setString(12, eventType.toString().toLowerCase());
+			ps.setString(12, Event_Type.OTHER.toString().toLowerCase());
 			ps.setString(13, workJust);
 			ps.setBoolean(14, urgent);
-			ps.setObject(15, requestMadeDate);
+			ps.setTimestamp(15, Timestamp.valueOf(requestMadeDate));
 			ps.executeUpdate();
 			ResultSet keys = ps.getGeneratedKeys();
 			int requestId = -1;
@@ -205,7 +206,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void insert(Employee e) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "insert into employee values (?,?,?,?,?,?,?)";
+			String sql = "insert into employee values (default,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, e.getFirstname());
 			ps.setString(2, e.getLastname());
@@ -220,4 +221,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 	}
 
+	//TODO: Update employee available reimbursement
+	
 }
