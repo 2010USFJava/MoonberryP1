@@ -9,4 +9,22 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  		<servlet-name>MainServlet</servlet-name>
+  		<servlet-class>com.revature.servlet.MainServlet</servlet-class>
+  	</servlet>
+  	<servlet>
+  		<servlet-name>JsonMainServlet</servlet-name>
+  		<servlet-class>com.revature.servlet.JsonMainServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+		<servlet-name>MainServlet</servlet-name>
+		<url-pattern>*.moonberry</url-pattern>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSONMainServlet</servlet-name>
+		<url-pattern>*.json</url-pattern>
+	</servlet-mapping>
 </web-app>
