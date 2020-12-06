@@ -26,5 +26,5 @@ public interface ApproverDao {
 
 	public List<TR_Request> getAllRequests();
 	
-
+	public void autoApproveRequests(LocalDateTime date);
 }
