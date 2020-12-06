@@ -119,11 +119,11 @@ public class ApproverDaoImpl implements ApproverDao {
 	}
 
 	@Override
-	public void updateAmount(TR_Request tr, double amount) {
+	public void updateRMBMAmount(TR_Request tr, double amount) {
 		try {
 			tr.setTuitionAmount(amount);
 			Connection conn = cf.getConnection();
-			String sql = "update tr_request tuition_amount= ? where request_id = ?";
+			String sql = "update tr_request set rmbsment_amount = ? where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setDouble(1, amount);
 			ps.setInt(2, tr.getRequestId());

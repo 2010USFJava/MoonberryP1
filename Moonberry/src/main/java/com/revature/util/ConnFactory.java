@@ -11,6 +11,7 @@ import java.util.Properties;
 public class ConnFactory {
 	//singleton Factory
 	
+	
 		private static ConnFactory cf;
 		
 		//private no args constructor
@@ -18,6 +19,7 @@ public class ConnFactory {
 		private ConnFactory() {
 			super();
 		}
+		
 		
 		public static synchronized ConnFactory getInstance() {
 			if(cf == null) {

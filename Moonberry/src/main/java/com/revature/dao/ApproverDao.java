@@ -18,7 +18,7 @@ public interface ApproverDao {
 
 	public void newApprover(Approver a);
 
-	public void updateAmount(TR_Request tr, double amount);
+	public void updateRMBMAmount(TR_Request tr, double amount);
 
 	public TR_Request getRequestById(int id);
 
