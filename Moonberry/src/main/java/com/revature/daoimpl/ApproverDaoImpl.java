@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,11 +209,35 @@ public class ApproverDaoImpl implements ApproverDao {
 		}
 		return trList;
 	}
-
+	
+	/** 
+	 * Checks all the requests and auto-approves requests awaiting super OR dpt head approval 
+	 * if they have not been approved within one week. 
+	 * Updates the request status and arrival date.
+	 */
 	@Override
 	public void autoApproveRequests(LocalDateTime date) {
-		// TODO Auto-generated method stub
 		
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request";
+			Statement ps = conn.createStatement();
+			ResultSet rs = ps.executeQuery(sql);
+			while(rs.next()) {
+				int request_id = rs.getInt("request_id");
+				LocalDateTime arrivalDate = rs.getTimestamp("request_arrival_date").toLocalDateTime();
+				long daysSinceArrival = arrivalDate.until(date, ChronoUnit.DAYS);
+				if (daysSinceArrival > 7) {
+					if (rs.getInt("request_status") == RS.AWAIT_SUPER_APPROVAL.getStatusCode()) 
+						this.setApprovalStatus(RS.AWAIT_DPT_HEAD_APPROVAL, this.getRequestById(request_id), date);
+					if (rs.getInt("request_status") == RS.AWAIT_DPT_HEAD_APPROVAL.getStatusCode())
+						this.setApprovalStatus(RS.AWAIT_BENCO_APPROVAL, this.getRequestById(request_id), date);
+				}
+		
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 
 }
