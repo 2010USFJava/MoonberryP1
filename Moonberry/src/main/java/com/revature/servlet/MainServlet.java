@@ -11,14 +11,14 @@ public class MainServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-		//System.out.println("in doGet");
+		System.out.println("in Master doGet");
 		//req.getRequestDispatcher(RequestHelper.process(req)).forward(req, res);
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-		//System.out.println("in doPost");
+		System.out.println("in do Master Post");
 		//req.getRequestDispatcher(RequestHelper.process(req)).forward(req, res);
 
 	}
