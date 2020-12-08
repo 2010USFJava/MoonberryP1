@@ -66,8 +66,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (emailProvided)
 				ps.setInt(1, RS.AWAIT_BENCO_APPROVAL.getStatusCode());
 			else {
-				
-				ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
+				if (this.isSuperAlsoDptHead(employee))
+					ps.setInt(1, RS.AWAIT_DPT_HEAD_APPROVAL.getStatusCode());
+				else 
+					ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
 			}
 				
 			ps.setInt(2, employee.getEmployeeId());
