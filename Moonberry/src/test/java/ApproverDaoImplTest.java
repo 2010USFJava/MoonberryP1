@@ -51,9 +51,18 @@ public class ApproverDaoImplTest {
 	public void getApproverList() {
 		ApproverDao a = new ApproverDaoImpl();
 		List<TR_Request> myA = a.getAllRequests();
-		assertEquals(myA.get(0).getRequestId(), 1);
+		assertEquals(myA.get(1).getRequestId(), 1);
 	}
-
+	
+	@Test
+	public void testAutoApprover() {
+		ApproverDao a = new ApproverDaoImpl();
+		TR_Request request = a.getRequestById(1);
+		assertEquals(2, a.getApprovalStatus(request).getStatusCode());
+		LocalDateTime d = LocalDateTime.of(LocalDate.of(1998, 05, 23), LocalTime.now());
+		a.autoApproveRequests(d);
+		
+	}
 }
 
 

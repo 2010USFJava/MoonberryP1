@@ -12,6 +12,8 @@ public interface ApproverDao {
 
 	public void setApprovalStatus(RS rs, TR_Request tr, LocalDateTime date);
 	
+	public RS getApprovalStatus(TR_Request tr);
+	
 	public Approver getApproverByUsername(String username);
 
 	public Approver getApproverById(int id);

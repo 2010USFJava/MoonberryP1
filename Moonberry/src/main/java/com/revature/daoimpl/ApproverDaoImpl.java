@@ -47,6 +47,25 @@ public class ApproverDaoImpl implements ApproverDao {
 
 	}
 
+	
+	@Override
+	public RS getApprovalStatus(TR_Request tr) {
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request where request_id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);		
+			ps.setInt(1, tr.getRequestId());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return RS.valueOfStatusCode(rs.getInt("request_status"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+	
 	@Override
 	public Approver getApproverByUsername(String username) {
 		Approver myApprover = null;
@@ -71,6 +90,7 @@ public class ApproverDaoImpl implements ApproverDao {
 		// TODO optional, log this recording who accessed this data
 
 	}
+
 
 	// takes in approver id and retrieves
 	// entry from approver table| returns java object
@@ -260,5 +280,7 @@ public class ApproverDaoImpl implements ApproverDao {
 		return aList;
 
 	}
+	
+	
 
 }
