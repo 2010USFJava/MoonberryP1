@@ -215,4 +215,25 @@ public class ApproverDaoImpl implements ApproverDao {
 		
 	}
 
+	@Override
+	public List<Approver> getAllApprovers() {
+		Approver app = null;
+		List<Approver> aList = new ArrayList<Approver>();
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from approver";
+			Statement ps = conn.createStatement();
+			ResultSet rs = ps.executeQuery(sql);
+			while(rs.next()) {
+				app = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				aList.add(app);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return aList;
+
+	}
+
 }
