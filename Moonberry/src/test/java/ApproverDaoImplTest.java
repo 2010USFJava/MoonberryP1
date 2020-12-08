@@ -48,10 +48,10 @@ public class ApproverDaoImplTest {
 		assertEquals(a.getAllRequests().get(0).getRmbsmentAmount(), 50.05, DELTA );
 	}
 	@Test
-	public void getApproverList() {
+	public void getRequestList() {
 		ApproverDao a = new ApproverDaoImpl();
-		List<TR_Request> myA = a.getAllRequests();
-		assertEquals(myA.get(0).getRequestId(), 1);
+		List<TR_Request> myT = a.getAllRequests();
+		assertEquals(myT.get(1).getRequestId(), 1);
 	}
 
 }

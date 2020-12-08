@@ -1,6 +1,12 @@
 package com.revature.model;
 
-public class Approver {
+import java.io.Serializable;
+
+public class Approver implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int approverId;
 	private Approver_Type atype;
 	private String firstname;

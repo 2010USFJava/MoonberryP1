@@ -15,25 +15,34 @@ public class LoginService {
 ApproverDao adao = new ApproverDaoImpl();
 EmployeeDao edao = new EmployeeDaoImpl();
 	
-	public Approver loginGetEveryone(String username, String password) {
-		if(loginVerify(username,password)) {
+	public Object loginAnyone(String username, String password) {
+		if(loginVerify(username,password).equals("approver")) {
 			return adao.getApproverByUsername(username);
-		}//TODO call getEmployee
+		}else if(loginVerify(username,password).equals("employee")) {
+			return edao.findByUsername(username);
+		}
 		return null;
 	}
 
 
-	private boolean loginVerify(String username, String password) {
+	private String loginVerify(String username, String password) {
 		List<Approver> aList = adao.getAllApprovers();
 		List<Employee> eList = edao.findAll();
-		boolean verify = false;
+		String type = "no user found";
 		for(Approver a: aList) {
 			if(a.getUsername().equals(username)&& a.getPassword().equals(password)) {
-				verify = true;
+				type = "approver";
+			}else {
+				for(Employee e: eList) {
+					if(e.getUsername().equals(username)&& e.getPassword().equals(password)) {
+						type = "employee";
+					}
+				}
 			}
 			
 		}
-		return verify;
+		return type; 
+		
 	}
 
 

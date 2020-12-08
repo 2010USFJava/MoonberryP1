@@ -69,21 +69,21 @@ values
 
 create table tr_request(
     request_id serial primary key,
-	request_status int,
+	request_status int default 1,
 	employee_id int not null,
-	request_made_date timestamp without time zone default now(),
-	event_start_date timestamp without time zone not null,
-	event_end_date timestamp without time zone not null,
+	request_made_date timestamp without time zone not null default now(),
+	event_start_date timestamp without time zone not null default '1111-11-11 11:11:11',
+	event_end_date timestamp without time zone not null default '1111-11-11 11:11:11',
 	event_name varchar(50) not null,
 	event_location varchar(50) not null,
 	event_description text default null,
-	tuition_amount numeric(6,2) default 0.00 not null,
-	rmbsment_amount numeric(6,2),
+	tuition_amount numeric(6,2) default 0.00,
+	rmbsment_amount numeric(6,2) default 0.00 not null,
 	grade_format grade_format not null,
 	event_type event_type not null,
 	work_just text not null,
 	urgent boolean default false,
-	request_arrival_date timestamp without time zone,
+	request_arrival_date timestamp without time zone not null default now(),
 
 	foreign key(employee_id) references employee(employee_id),
 	foreign key(request_status) references status_code(code)
@@ -145,5 +145,7 @@ insert into tr_request
 		'other',
 		'am broke',
 		false,
-		'2019-05-22 04:05:06'
+		default
 	);
+	
+update tr_request set request_arrival_date = '1111-11-11 11:11:11', request_made_date = '1111-11-11 11:11:11' where request_id = 3;

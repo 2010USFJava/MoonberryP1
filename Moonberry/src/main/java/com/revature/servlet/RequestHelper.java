@@ -13,13 +13,15 @@ public class RequestHelper {
     
 		switch (req.getRequestURI()) {
 		
-//		case "/MoonberryTRMS/login.trms":
-//			System.out.println("in login.change helper");
-//			return LoginController.login(req);
-
+		case "/MoonberryTRMS/login.trms":
+			System.out.println("in login.trms helper");
+			return LoginController.login(req);
 		case "/MoonberryTRMS/apphome.trms":
 			System.out.println("in home.change rhelper");
 			return HomeController.home(req);
+		case "/MoonberryTRMS/emphome.trms":
+			System.out.println("in home.change rhelper");
+			return HomeController.home(req); //TODO add employeehome here
 
 		default:
 			System.out.println("Your life? I'mma need that.");
