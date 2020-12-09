@@ -22,6 +22,12 @@ public class JsonMainServlet extends HttpServlet {
 		System.out.println("in do get");
 		JsonRequestHelper.process(req,res);
 	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		System.out.println("in doPost");
+		JsonRequestHelper.process(req,res);
+		
+	}
 
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.controller.LoginController;
+import com.revature.controller.UserController;
 
 public class JsonRequestHelper {
 	
@@ -15,8 +16,9 @@ public class JsonRequestHelper {
 	// to serilaize to Java object
 	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		switch(req.getRequestURI()) {
-		case "/MoonberryTRMS/getsession.json"://waaaaait a dang minute
-			LoginController.login(req);
+		case "/MoonberryTRMS/getsession.json":
+			UserController.getSessionUser(req, res);;
+			//return something here???
 			break;
 		default:
 			System.out.println("This the default you messed up.");
