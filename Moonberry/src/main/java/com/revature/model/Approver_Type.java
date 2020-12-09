@@ -1,6 +1,8 @@
 package com.revature.model;
 
-public enum Approver_Type {
+import java.io.Serializable;
+
+public enum Approver_Type implements Serializable {
 	SUPERVISOR,
 	DEPARTMENT_HEAD,
 	BEN_CO

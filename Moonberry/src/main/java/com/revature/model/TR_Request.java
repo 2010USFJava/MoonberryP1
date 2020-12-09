@@ -1,10 +1,15 @@
 package com.revature.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class TR_Request {
+public class TR_Request implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int requestId;
 	private RS requestStatus;
 	private int employeeId;

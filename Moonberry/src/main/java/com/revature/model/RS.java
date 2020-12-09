@@ -1,6 +1,8 @@
 package com.revature.model;
 
-public enum RS {
+import java.io.Serializable;
+
+public enum RS implements Serializable{
 	REQUEST_CREATED         (1),
 	AWAIT_SUPER_APPROVAL    (2),
 	ADD_INFO_REQUESTED      (3),

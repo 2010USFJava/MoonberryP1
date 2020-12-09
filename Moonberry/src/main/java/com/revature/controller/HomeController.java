@@ -11,6 +11,12 @@ public class HomeController {
 		
 	//TODO emp app home rename this probs
 	}
+	
+	public static String ohome(HttpServletRequest req) {
+		return "resources/html/emphome.html";
+		
+	//TODO emp app home rename this probs
+	}
 
 
 }

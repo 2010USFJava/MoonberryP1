@@ -9,7 +9,13 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnFactory {
-	//singleton Factory
+//	//singleton Factory
+	
+	//pain peko
+	//hard coding cuz war doesn't like db.prop
+	private String url = "jdbc:postgresql://nrobinson.csx9icmpd5xi.us-east-2.rds.amazonaws.com:5432/trmsdb";
+	private String username = "moonflower";
+	private String password = "NightSkyKidMoon";
 	
 	
 		private static ConnFactory cf;
@@ -33,17 +39,22 @@ public class ConnFactory {
 			Connection conn = null;
 			Properties prop = new Properties();
 			try {
-				try {
-					prop.load(new FileReader("database.properties"));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
+//				try {
+//					prop.load(new FileReader("database.properties"));
+//				} catch (FileNotFoundException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				Class.forName("org.postgresql.Driver");  
+//				conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
+				conn = DriverManager.getConnection(this.url, this.username, this.password);
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -51,5 +62,5 @@ public class ConnFactory {
 			return conn;
 			
 		}
-
+	
 }

@@ -20,8 +20,8 @@ public class RequestHelper {
 			System.out.println("in home.change rhelper");
 			return HomeController.home(req);
 		case "/MoonberryTRMS/emphome.trms":
-			System.out.println("in home.change rhelper");
-			return HomeController.home(req); //TODO add employeehome here
+			System.out.println("in emp home helper");
+			return HomeController.ohome(req); 
 
 		default:
 			System.out.println("Your life? I'mma need that.");

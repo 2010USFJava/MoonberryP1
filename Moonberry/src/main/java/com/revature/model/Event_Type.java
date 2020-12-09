@@ -1,6 +1,8 @@
 package com.revature.model;
 
-public enum Event_Type {
+import java.io.Serializable;
+
+public enum Event_Type implements Serializable {
 	UNIVERSITY_COURSE 	(0.8),
 	SEMINAR				(0.6),
 	CERT_PREP_COURSE	(0.75),

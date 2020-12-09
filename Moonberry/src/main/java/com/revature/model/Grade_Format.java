@@ -1,6 +1,8 @@
 package com.revature.model;
 
-public enum Grade_Format {
+import java.io.Serializable;
+
+public enum Grade_Format implements Serializable {
 	LETTER,
 	PASS_FAIL,
 	PERCENTAGE,

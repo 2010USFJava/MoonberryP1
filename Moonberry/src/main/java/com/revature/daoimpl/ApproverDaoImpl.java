@@ -267,8 +267,8 @@ public class ApproverDaoImpl implements ApproverDao {
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "select * from approver";
-			Statement ps = conn.createStatement();
-			ResultSet rs = ps.executeQuery(sql);
+			//Statement ps = conn.createStatement();
+			ResultSet rs = conn.createStatement().executeQuery(sql);
 			while(rs.next()) {
 				app = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));

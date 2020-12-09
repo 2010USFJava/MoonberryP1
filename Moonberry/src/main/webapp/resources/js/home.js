@@ -19,6 +19,6 @@ function getVillain(){
 			console.log(user);
 		}
 	}
-	xhttp.open("GET","http://localhost:8080/HelloFrontController/getsession.json");
+	xhttp.open("GET","http://localhost:8080/MoonberryTRMS/getsession.json");
 	xhttp.send();
 }
