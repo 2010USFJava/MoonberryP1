@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>New Tuition Reimbursement Request</title>
-</head>
-<body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<title>New Tuition Reimbursement Request</title>
+	</head>
+	
+	<body>
+		<h1>Reimbursement Form</h1>
+		<form id="form" action="form" method="POST">
+			<input type="hidden" id="employee_id" name="employee_id" value="" />
+			<input type="hidden" id="current_date" name="current_date" value="" />
+			<input type="hidden" id="rmbsb_amount" name="rmbsb_amount" value="" />
+			<div class="form-group">
+				<label for="event_type">Event Type:</label>
+				<select name="eventgroup" class="form-control" id="event_type" required="required">
+					<option value="1" selected="selected">University Course</option>
+					<option value="2">Seminar</option>
+					<option value="3">Certification Preparation Course</option>
+					<option value="4">Certification</option>
+					<option value="5">Technical Training</option>
+					<option value="6">Others</option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="event_start_date">Event Start Date:</label> 
+				<input type="date" name="event_start_date" class="form-control" id="event_start_date" required="required">
+			</div>
+			<div class="form-group">
+				<label for="event_end_date">Event End Date:</label> 
+				<input type="date" name="event_end_date" class="form-control" id="event_end_date" required="required">
+			</div>
+		
+			<div class="form-group">
+				<label for="event_address">Event Address:</label> 
+				<input type="text" class="form-control" id="event_address" name="event_address" placeholder="Enter address" required="required">
+	
+				<label for="event_city">Event City:</label>
+				<input type="text" name="event_city" pattern="[A-Za-z]*" class="form-control" id="event_city" placeholder="Enter city " required="required">
 
-</body>
+				<label for="event_state">Event State:</label> 
+				<input type="text" name="event_state" pattern="[A-Za-z]{2}" class="form-control" id="event_state" placeholder="Enter state " minlength="2" maxlength="2" required="required">
+
+				<label for="event_zip">Event Zip Code:</label> 
+				<input type="number" name="eventzip" class="form-control" id="event_zip" maxlength="5" placeholder="Enter zipcode " required="required">
+			</div>
+			
+			<div class="form-group">
+				<label for="eventdescription">Event Description:</label>
+				<input type="text" class="form-control" id="event_description" name="event_description" placeholder="Enter event description " required="required">
+			</div>
+			
+			<div class="form-group">
+				<label for="tuition_amount">Request Amount:</label> 
+				<input type="number" class="form-control" id="tuition_amount" step="0.01" max="1000" placeholder="Enter amount " required="required">
+			</div>
+			
+			<div class="form-group">
+				<label for="rmbsment_amount">Estimated Reimbursement Amount: </label> 
+				<input type="number" class="form-control" name="rmbsment_amount" id="rmbsment_amount" max="1000" disabled="disabled">
+			</div>
+			
+			<button type="submit" class="btn btn-success btn-block">Submit</button>
+		</form>	
+	</body>
 </html>
