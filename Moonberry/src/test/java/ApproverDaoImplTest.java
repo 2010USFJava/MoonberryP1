@@ -64,6 +64,22 @@ public class ApproverDaoImplTest {
 		a.autoApproveRequests(d);
 
 	}
+	
+	@Test
+	public void testGetRequestByDpt() {
+		ApproverDao a = new ApproverDaoImpl();
+		List<TR_Request> tRR = a.getRequestByDpt(1);
+		assertEquals(2, tRR.size());
+	}
+	
+	@Test
+	public void testGetRequestByStatus() {
+		ApproverDao a = new ApproverDaoImpl();
+		List<TR_Request> tRR1 = a.getRequestByStatus(RS.AWAIT_SUPER_APPROVAL);
+		assertEquals(2, tRR1.size());
+		List<TR_Request> tRR2 = a.getRequestByStatus(RS.AWAIT_BENCO_APPROVAL);
+		assertEquals(1, tRR2.size());
+	}
 }
 
 

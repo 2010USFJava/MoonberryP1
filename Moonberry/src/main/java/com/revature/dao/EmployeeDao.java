@@ -16,11 +16,17 @@ public interface EmployeeDao {
 			double tuitionAmount, LocalDateTime eventStartDate, LocalDateTime eventEndDate, 
 			String eventName, String eventLocation, String eventDescription, 
 			Grade_Format gradeFormat, Event_Type eventType, String workJust, boolean emailProvided);
+	
 	public boolean isSuperAlsoDptHead(Employee e);
+	
 	public Employee findById(int id);
+	
 	public Employee findByUsername(String username);
+	
 	public List<Employee> findAll();
+	
 	public Employee findByRequest(TR_Request r);
+	
 	public List<TR_Request> findEmployeeRequests(Employee e);
 	
 	public void insert(Employee e);
