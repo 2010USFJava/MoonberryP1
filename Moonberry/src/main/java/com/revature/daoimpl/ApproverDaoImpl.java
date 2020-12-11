@@ -177,9 +177,35 @@ public class ApproverDaoImpl implements ApproverDao {
 		return tr;
 	}
 
+	public List<TR_Request> getRequestBySuper(int super_id) {
+		TR_Request tr = null;
+		List<TR_Request> trList = new ArrayList<TR_Request>();
+		try {
+			Connection conn = cf.getConnection();	
+			String sql = "select * from tr_request left join employee on tr_request.employee_id = employee.employee_id where employee.direct_super =?";		
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, super_id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {	
+				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
+							rs.getTimestamp(4).toLocalDateTime(),
+							rs.getTimestamp(5).toLocalDateTime(),
+							rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
+							rs.getString(9),rs.getDouble(10),rs.getDouble(11),
+							Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
+							rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
+				
+				trList.add(tr);
+			}			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return trList;
+	}
+
+	
 	@Override
-	public List<TR_Request> getRequestByDpt(int department_id) {
-		EmployeeDao e = new EmployeeDaoImpl();
+	public List<TR_Request> getRequestByDpt(int department_id) {	
 		TR_Request tr = null;
 		List<TR_Request> trList = new ArrayList<TR_Request>();
 		try {

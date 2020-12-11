@@ -86,8 +86,15 @@ public class ApproverDaoImplTest {
 		ApproverDao a = new ApproverDaoImpl();
 		int i = a.getDepartmentIdByName("foreign affairs");
 		assertEquals(i,2);
+	}		
 		
-		
+
+	public void testGetRequestBySuper() {
+		ApproverDao a = new ApproverDaoImpl();
+		List<TR_Request> tRR1 = a.getRequestBySuper(1);
+		assertEquals(2, tRR1.size());
+		List<TR_Request> tRR2 = a.getRequestBySuper(3);
+		assertEquals(1, tRR2.size());
 	}
 }
 

@@ -26,6 +26,8 @@ public interface ApproverDao {
 
 	public TR_Request getRequestById(int id);
 	
+	public List<TR_Request> getRequestBySuper(int super_id);
+	
 	public List<TR_Request> getRequestByDpt(int department_id);
 	
 	public List<TR_Request> getRequestByStatus(RS status);
