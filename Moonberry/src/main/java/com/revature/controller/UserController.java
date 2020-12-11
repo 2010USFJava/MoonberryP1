@@ -2,7 +2,7 @@ package com.revature.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,10 +26,15 @@ public class UserController {
 		Object thisUser = req.getSession().getAttribute("currentuser");
 		if(thisUser.getClass().equals(a.getClass())) {
 			Approver aUser = (Approver) thisUser;
+			Cookie cookie = new Cookie(aUser.getUsername(),new ObjectMapper().writeValueAsString(aUser));
+			res.addCookie(cookie);
 			res.getWriter().write(new ObjectMapper().writeValueAsString(aUser));
 		}else {
 			Employee eUser = (Employee) thisUser;
+			Cookie cookie = new Cookie(eUser.getUsername(),new ObjectMapper().writeValueAsString(eUser));
+			res.addCookie(cookie);
 			res.getWriter().write(new ObjectMapper().writeValueAsString(eUser));
+			
 		}
 		
 	}

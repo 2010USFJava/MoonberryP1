@@ -80,6 +80,15 @@ public class ApproverDaoImplTest {
 		List<TR_Request> tRR2 = a.getRequestByStatus(RS.AWAIT_BENCO_APPROVAL);
 		assertEquals(1, tRR2.size());
 	}
+	
+	@Test
+	public void testGetDepIdByName(){
+		ApproverDao a = new ApproverDaoImpl();
+		int i = a.getDepartmentIdByName("foreign affairs");
+		assertEquals(i,2);
+		
+		
+	}
 }
 
 

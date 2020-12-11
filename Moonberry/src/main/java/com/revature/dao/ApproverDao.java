@@ -15,6 +15,8 @@ public interface ApproverDao {
 	public RS getApprovalStatus(TR_Request tr);
 	
 	public Approver getApproverByUsername(String username);
+	 
+	public int getDepartmentIdByName(String depName);
 
 	public Approver getApproverById(int id);
 

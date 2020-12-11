@@ -24,7 +24,6 @@ import com.revature.util.ConnFactory;
 
 public class ApproverDaoImpl implements ApproverDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
-	
 
 	/*
 	 * takes in request object and response code enum and updates the response code
@@ -39,7 +38,7 @@ public class ApproverDaoImpl implements ApproverDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, rs.getStatusCode());
 			ps.setInt(3, tr.getRequestId());
-			ps.setTimestamp(2, Timestamp.valueOf(actionDate) );
+			ps.setTimestamp(2, Timestamp.valueOf(actionDate));
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,13 +48,12 @@ public class ApproverDaoImpl implements ApproverDao {
 
 	}
 
-	
 	@Override
 	public RS getApprovalStatus(TR_Request tr) {
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "select * from tr_request where request_id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);		
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, tr.getRequestId());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -67,7 +65,7 @@ public class ApproverDaoImpl implements ApproverDao {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Approver getApproverByUsername(String username) {
 		Approver myApprover = null;
@@ -79,8 +77,8 @@ public class ApproverDaoImpl implements ApproverDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()),
+						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 			}
 
 		} catch (SQLException e) {
@@ -92,7 +90,6 @@ public class ApproverDaoImpl implements ApproverDao {
 		// TODO optional, log this recording who accessed this data
 
 	}
-
 
 	// takes in approver id and retrieves
 	// entry from approver table| returns java object
@@ -107,8 +104,8 @@ public class ApproverDaoImpl implements ApproverDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				myApprover = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()),
+						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,70 +161,41 @@ public class ApproverDaoImpl implements ApproverDao {
 			Connection conn = cf.getConnection();
 			String sql = "select * from tr_request where request_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id); 
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
-						rs.getTimestamp(4).toLocalDateTime(),
-						rs.getTimestamp(5).toLocalDateTime(),
-						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
-						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
-						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
+			while (rs.next()) {
+				tr = new TR_Request(rs.getInt(1), RS.valueOfStatusCode(rs.getInt(2)), rs.getInt(3),
+						rs.getTimestamp(4).toLocalDateTime(), rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getDouble(10), rs.getDouble(11), Grade_Format.valueOf(rs.getString(12).toUpperCase()),
+						Event_Type.valueOf(rs.getString(13).toUpperCase()), rs.getString(14), rs.getBoolean(15),
+						rs.getTimestamp(16).toLocalDateTime());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return tr;
 	}
-	
+
 	@Override
 	public List<TR_Request> getRequestByDpt(int department_id) {
-		EmployeeDao e = new EmployeeDaoImpl();	
+		EmployeeDao e = new EmployeeDaoImpl();
 		TR_Request tr = null;
 		List<TR_Request> trList = new ArrayList<TR_Request>();
 		try {
-			Connection conn = cf.getConnection();	
-			String sql = "select * from tr_request left join employee on tr_request.employee_id = employee.employee_id where employee.department_id =?";		
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request left join employee on tr_request.employee_id = employee.employee_id where employee.department_id =?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, department_id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {	
-				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
-							rs.getTimestamp(4).toLocalDateTime(),
-							rs.getTimestamp(5).toLocalDateTime(),
-							rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
-							rs.getString(9),rs.getDouble(10),rs.getDouble(11),
-							Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-							rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
-				
-				trList.add(tr);
-			}			
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		return trList;
-	}
+			while (rs.next()) {
+				tr = new TR_Request(rs.getInt(1), RS.valueOfStatusCode(rs.getInt(2)), rs.getInt(3),
+						rs.getTimestamp(4).toLocalDateTime(), rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getDouble(10), rs.getDouble(11), Grade_Format.valueOf(rs.getString(12).toUpperCase()),
+						Event_Type.valueOf(rs.getString(13).toUpperCase()), rs.getString(14), rs.getBoolean(15),
+						rs.getTimestamp(16).toLocalDateTime());
 
-
-	@Override
-	public List<TR_Request> getRequestByStatus(RS status) {
-		TR_Request tr = null;
-		List<TR_Request> trList = new ArrayList<TR_Request>();
-		try {
-			Connection conn = cf.getConnection();	
-			String sql = "select * from tr_request where request_status =?";		
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, status.getStatusCode());
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {	
-				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
-						rs.getTimestamp(4).toLocalDateTime(),
-						rs.getTimestamp(5).toLocalDateTime(),
-						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
-						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
-						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
 				trList.add(tr);
 			}
 		} catch (SQLException ex) {
@@ -235,7 +203,31 @@ public class ApproverDaoImpl implements ApproverDao {
 		}
 		return trList;
 	}
-	
+
+	@Override
+	public List<TR_Request> getRequestByStatus(RS status) {
+		TR_Request tr = null;
+		List<TR_Request> trList = new ArrayList<TR_Request>();
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select * from tr_request where request_status =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, status.getStatusCode());
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				tr = new TR_Request(rs.getInt(1), RS.valueOfStatusCode(rs.getInt(2)), rs.getInt(3),
+						rs.getTimestamp(4).toLocalDateTime(), rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getDouble(10), rs.getDouble(11), Grade_Format.valueOf(rs.getString(12).toUpperCase()),
+						Event_Type.valueOf(rs.getString(13).toUpperCase()), rs.getString(14), rs.getBoolean(15),
+						rs.getTimestamp(16).toLocalDateTime());
+				trList.add(tr);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return trList;
+	}
 
 	@Override
 	public List<TR_Request> getRequestByEmployeeId(int id) {
@@ -247,14 +239,13 @@ public class ApproverDaoImpl implements ApproverDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
-						rs.getTimestamp(4).toLocalDateTime(),
-						rs.getTimestamp(5).toLocalDateTime(),
-						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
-						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
-						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
+			while (rs.next()) {
+				tr = new TR_Request(rs.getInt(1), RS.valueOfStatusCode(rs.getInt(2)), rs.getInt(3),
+						rs.getTimestamp(4).toLocalDateTime(), rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getDouble(10), rs.getDouble(11), Grade_Format.valueOf(rs.getString(12).toUpperCase()),
+						Event_Type.valueOf(rs.getString(13).toUpperCase()), rs.getString(14), rs.getBoolean(15),
+						rs.getTimestamp(16).toLocalDateTime());
 				trList.add(tr);
 			}
 		} catch (SQLException e) {
@@ -272,14 +263,13 @@ public class ApproverDaoImpl implements ApproverDao {
 			String sql = "select * from tr_request";
 			Statement ps = conn.createStatement();
 			ResultSet rs = ps.executeQuery(sql);
-			while(rs.next()) {
-				tr = new TR_Request(rs.getInt(1),RS.valueOfStatusCode(rs.getInt(2)),rs.getInt(3), 
-						rs.getTimestamp(4).toLocalDateTime(),
-						rs.getTimestamp(5).toLocalDateTime(),
-						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7),rs.getString(8),
-						rs.getString(9),rs.getDouble(10),rs.getDouble(11),
-						Grade_Format.valueOf(rs.getString(12).toUpperCase()), Event_Type.valueOf(rs.getString(13).toUpperCase()),
-						rs.getString(14),rs.getBoolean(15),rs.getTimestamp(16).toLocalDateTime());
+			while (rs.next()) {
+				tr = new TR_Request(rs.getInt(1), RS.valueOfStatusCode(rs.getInt(2)), rs.getInt(3),
+						rs.getTimestamp(4).toLocalDateTime(), rs.getTimestamp(5).toLocalDateTime(),
+						rs.getTimestamp(6).toLocalDateTime(), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getDouble(10), rs.getDouble(11), Grade_Format.valueOf(rs.getString(12).toUpperCase()),
+						Event_Type.valueOf(rs.getString(13).toUpperCase()), rs.getString(14), rs.getBoolean(15),
+						rs.getTimestamp(16).toLocalDateTime());
 				trList.add(tr);
 			}
 		} catch (SQLException e) {
@@ -287,35 +277,35 @@ public class ApproverDaoImpl implements ApproverDao {
 		}
 		return trList;
 	}
-	
-	/** 
-	 * Checks all the requests and auto-approves requests awaiting super OR dpt head approval 
-	 * if they have not been approved within one week. 
-	 * Updates the request status and arrival date.
+
+	/**
+	 * Checks all the requests and auto-approves requests awaiting super OR dpt head
+	 * approval if they have not been approved within one week. Updates the request
+	 * status and arrival date.
 	 */
 	@Override
 	public void autoApproveRequests(LocalDateTime date) {
-		
+
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "select * from tr_request";
 			Statement ps = conn.createStatement();
 			ResultSet rs = ps.executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				int request_id = rs.getInt("request_id");
 				LocalDateTime arrivalDate = rs.getTimestamp("request_arrival_date").toLocalDateTime();
 				long daysSinceArrival = arrivalDate.until(date, ChronoUnit.DAYS);
 				if (daysSinceArrival > 7) {
-					if (rs.getInt("request_status") == RS.AWAIT_SUPER_APPROVAL.getStatusCode()) 
+					if (rs.getInt("request_status") == RS.AWAIT_SUPER_APPROVAL.getStatusCode())
 						this.setApprovalStatus(RS.AWAIT_DPT_HEAD_APPROVAL, this.getRequestById(request_id), date);
 					if (rs.getInt("request_status") == RS.AWAIT_DPT_HEAD_APPROVAL.getStatusCode())
 						this.setApprovalStatus(RS.AWAIT_BENCO_APPROVAL, this.getRequestById(request_id), date);
 				}
-		
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	@Override
@@ -325,9 +315,9 @@ public class ApproverDaoImpl implements ApproverDao {
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "select * from approver";
-			//Statement ps = conn.createStatement();
+			// Statement ps = conn.createStatement();
 			ResultSet rs = conn.createStatement().executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				app = new Approver(rs.getInt(1), Approver_Type.valueOf(rs.getString(2).toUpperCase()), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 				aList.add(app);
@@ -339,8 +329,22 @@ public class ApproverDaoImpl implements ApproverDao {
 
 	}
 
+	@Override
+	public int getDepartmentIdByName(String depName) {
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select department_id from department where name=?";
+			PreparedStatement ps = conn.prepareStatement(sql);		
+			ps.setString(1, depName);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("department_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-
-	
+		}
+		return 0;
+}
 
 }

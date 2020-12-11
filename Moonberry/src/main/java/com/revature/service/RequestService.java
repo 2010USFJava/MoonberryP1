@@ -25,14 +25,19 @@ public class RequestService {
 		if(user.getClass().equals(a.getClass())) {
 			Approver thisUser =(Approver) user;
 			if(thisUser.getAtype().equals(Approver_Type.SUPERVISOR)) {
-//				for(TR_Request t : edao.) { //TODO get requests by department??
-//					myRequests.add(t);
-//				}
+				for(TR_Request t : adao.) { //TODO get requests by department??
+					myRequests.add(t);
+				}
 			}else if(thisUser.getAtype().equals(Approver_Type.BEN_CO)) {
-				
-				//TODO add approver dao get request list arrays
+				for(TR_Request t : adao.getAllRequests()) { 
+					myRequests.add(t);
+				}
 			}else {
-				//TODO add approver dao get request list arrays
+				int dId = adao.getDepartmentIdByName(thisUser.getDepartment());
+				for(TR_Request t : adao.getRequestByDpt(dId)) { 
+					myRequests.add(t);
+				}
+//					
 			}
 		}else {
 			for(TR_Request t :edao.findEmployeeRequests((Employee) user)) {

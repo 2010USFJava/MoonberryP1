@@ -19,7 +19,7 @@ public class JsonRequestHelper {
 		case "/MoonberryTRMS/getsession.json":
 			UserController.getSessionUser(req, res);
 			break;
-		case "/MoonberryTRMS/getrsession.json": //this might break tbh. fix in request.js if it do
+		case "/MoonberryTRMS/getrsession.json": 
 			RequestController.returnRequest(req, res);
 		
 			break;
