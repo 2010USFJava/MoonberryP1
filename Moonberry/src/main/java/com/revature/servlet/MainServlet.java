@@ -18,7 +18,7 @@ public class MainServlet extends HttpServlet{
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-		System.out.println("in do Master Post");
+		System.out.println("in Master doPost");
 		req.getRequestDispatcher(RequestHelper.process(req)).forward(req, res);
 
 	}

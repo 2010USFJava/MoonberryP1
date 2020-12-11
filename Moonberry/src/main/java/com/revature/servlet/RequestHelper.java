@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.HomeController;
 import com.revature.controller.LoginController;
+import com.revature.controller.RequestViewController;
 
 public class RequestHelper {
 	
@@ -21,8 +22,10 @@ public class RequestHelper {
 			return HomeController.home(req);
 		case "/MoonberryTRMS/emphome.trms":
 			System.out.println("in emp home helper");
-			return HomeController.ohome(req); 
-
+			return HomeController.ohome(req);
+		case "/MoonberryTRMS/request.view.trms":
+			System.out.println("in request home helper");
+			return  RequestViewController.view(req);
 		default:
 			System.out.println("Your life? I'mma need that.");
 			return "resources/html/unsuccessfullogin.html";

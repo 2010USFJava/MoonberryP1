@@ -21,8 +21,10 @@ public class LoginController {
 		}
 		
 		String sessionId = req.getSession().getId();
+		//from the login boxes
 		String username = req.getParameter("Username");
 		String password = req.getParameter("Password");
+		//returns the user as java object created from database entry
 		Object user = lServ.loginAnyone(username, password);
 		if (user == null) {
 			return "unsuccessfullogin.trms";

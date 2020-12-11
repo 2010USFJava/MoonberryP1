@@ -12,18 +12,19 @@ import com.revature.model.Approver;
 import com.revature.model.Employee;
 
 /*this method gets the user off of the current user attribute written in login controller
- * checks if said use is an approver-. if so, casts user as anaapprover
+ * checks if said user is an approver-. if so, casts user as an aapprover
  * if not casts user as an employee
- * writes user as as JSON
- * equivalent to villian controller
- * 
+ * writes object as as JSON to the request
+ * equivalent to villian controller example
+ * Gets called in the JSON Request  helper
 */
-public class UserController extends HttpServlet {
+public class UserController {
+	
 	public static void getSessionUser(HttpServletRequest req, HttpServletResponse res) 
 											throws JsonProcessingException, IOException{
 		Approver a = new Approver();	
 		Object thisUser = req.getSession().getAttribute("currentuser");
-		if(thisUser.getClass().isInstance(a.getClass())) {
+		if(thisUser.getClass().equals(a.getClass())) {
 			Approver aUser = (Approver) thisUser;
 			res.getWriter().write(new ObjectMapper().writeValueAsString(aUser));
 		}else {

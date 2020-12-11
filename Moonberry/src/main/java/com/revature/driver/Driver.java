@@ -1,13 +1,14 @@
 package com.revature.driver;
 
-import com.revature.model.Grade_Format;
+import com.revature.dao.ApproverDao;
+import com.revature.daoimpl.ApproverDaoImpl;
 
 public class Driver {
 
 	public static void main(String[] args) {
 		
-		Grade_Format gradeFormat = Grade_Format.LETTER;
-		System.out.println(gradeFormat.toString());
+		//ApproverDao ad = new ApproverDaoImpl();
+		//System.out.println(ad.getAllRequests());
 
 	}
 
