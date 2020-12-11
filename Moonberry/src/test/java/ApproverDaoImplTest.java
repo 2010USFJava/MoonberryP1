@@ -80,6 +80,15 @@ public class ApproverDaoImplTest {
 		List<TR_Request> tRR2 = a.getRequestByStatus(RS.AWAIT_BENCO_APPROVAL);
 		assertEquals(1, tRR2.size());
 	}
+	
+	@Test
+	public void testGetRequestBySuper() {
+		ApproverDao a = new ApproverDaoImpl();
+		List<TR_Request> tRR1 = a.getRequestBySuper(1);
+		assertEquals(2, tRR1.size());
+		List<TR_Request> tRR2 = a.getRequestBySuper(3);
+		assertEquals(1, tRR2.size());
+	}
 }
 
 
