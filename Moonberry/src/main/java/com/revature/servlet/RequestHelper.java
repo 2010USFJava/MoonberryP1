@@ -35,7 +35,6 @@ public class RequestHelper {
 			return LogoutController.logout(req,res);
 		case "/MoonberryTRMS/newrequest.trms":
 			return FormViewController.view(req);
-			
 		default:
 			System.out.println("Your life? I'mma need that.");
 			return "resources/html/unsuccessfullogin.html";
