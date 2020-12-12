@@ -50,13 +50,21 @@ function estCost() {
 	}
 	
 }
+const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+	data[element.name] = element.value;
+	return data;
+  }, {});
+
 const button = document.getElementById('submit-btn');
 button.addEventListener('click', async _ => {
 	console.log("submit form button clicked");
 
 	var formElement = document.querySelector("form");
-	var formData = new FormData(formElement);
-	
+	//var formData = new FormData(formElement);
+	var formData = formToJSON(formElement.elements);
+	console.log("TESTING IN BUTTON 0");
+	console.log(formData);
+	console.log("TESTING IN BUTTON 1");
 	var xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange= function(){
@@ -68,8 +76,11 @@ button.addEventListener('click', async _ => {
 		// 	console.log(user);
 		// }
 	}
-	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json");
-	xhttp.send(formData);
+	var formString = JSON.stringify(formData);
+	let u = new URLSearchParams(formData).toString()
+	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json?"+u, true);
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.send();
 	alert("Submitted successfully."); // FIX THIS LATER
 });
 

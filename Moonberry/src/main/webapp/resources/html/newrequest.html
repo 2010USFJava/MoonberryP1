@@ -12,10 +12,9 @@
 		<form id="form" name ="form" method="POST">
 			<input type="hidden" id="employee_id" name="employee_id" value="" />
 			
-			<input type="hidden" id="rmbsb_amount" name="rmbsb_amount" value="" />
 			<div class="form-group">
 				<label for="event_type">Event Type:</label>
-				<select name="eventgroup" class="form-control" id="event_type" required="required">
+				<select name="event_type" class="form-control" id="event_type" required="required">
 					<option value="1" selected="selected">University Course</option>
 					<option value="2">Seminar</option>
 					<option value="3">Certification Preparation Course</option>
@@ -31,11 +30,11 @@
 	
 			<div class="form-group">
 				<label for="event_start_date">Event Start Date:</label> 
-				<input type="date" name="event_start_date" class="form-control" id="event_start_date" required="required">
+				<input type="datetime-local" name="event_start_date" class="form-control" id="event_start_date" required="required">
 			</div>
 			<div class="form-group">
 				<label for="event_end_date">Event End Date:</label> 
-				<input type="date" name="event_end_date" class="form-control" id="event_end_date" required="required">
+				<input type="datetime-local" name="event_end_date" class="form-control" id="event_end_date" required="required">
 			</div>
 		
 			<div class="form-group">
@@ -49,7 +48,7 @@
 				<input type="text" name="event_state" pattern="[A-Za-z]{2}" class="form-control" id="event_state" placeholder="Enter state " minlength="2" maxlength="2" required="required">
 
 				<label for="event_zip">Event Zip Code:</label> 
-				<input type="number" name="eventzip" class="form-control" id="event_zip" maxlength="5" placeholder="Enter zipcode " required="required">
+				<input type="number" name="event_zip" class="form-control" id="event_zip" maxlength="5" placeholder="Enter zipcode " required="required">
 			</div>
 			
 			<div class="form-group">
@@ -59,7 +58,7 @@
 			
 			<div class="form-group">
 				<label for="tuition_amount">Request Amount:</label> 
-				<input type="number" class="form-control" id="tuition_amount" step="0.01" max="1000" placeholder="Enter amount " required="required">
+				<input type="number" class="form-control" name="tuition_amount" id="tuition_amount" step="0.01" max="1000" placeholder="Enter amount " required="required">
 			</div>
 			
 			<div class="form-group">

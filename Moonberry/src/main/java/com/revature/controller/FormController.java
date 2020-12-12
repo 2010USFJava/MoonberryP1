@@ -1,6 +1,11 @@
 package com.revature.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,9 +34,17 @@ public class FormController {
 		} else {
 			System.out.println("uh oh, form controller should have got the user");
 		}
-		System.out.println("request :" + req.getParameterMap().toString());
-		String requestMadeDate = req.getParameter("current_date");
-		stringToDate(requestMadeDate);
+		
+		HashMap<String, String[]> mapping = new HashMap<String, String[]>(req.getParameterMap());
+		for (String key : mapping.keySet()) {
+			System.out.println("key: " + key + ", value: " + Arrays.toString(mapping.get(key)));
+		}
+		//System.out.println("request :" + mapping.toString());
+
+		LocalDateTime currentTime = LocalDateTime.of(
+				LocalDate.parse(req.getParameter("current_date")), LocalTime.now());
+		LocalDateTime eventStartTime = LocalDateTime.parse(req.getParameter("event_start_date"));
+		LocalDateTime eventEndTime = LocalDateTime.parse(req.getParameter("event_end_date"));
 		String eventLocation = req.getParameter("event_address") + ", " + req.getParameter("event_city") + ", "
 				+ req.getParameter("event_state") + ", " + req.getParameter("event_zip");
 		System.out.println("location is " + eventLocation);
@@ -39,8 +52,5 @@ public class FormController {
 		
 	}
 	
-	private static LocalDateTime stringToDate(String date) {
-		System.out.println("Converting the date " + date);
-		return null;
-	}
+
 }
