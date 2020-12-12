@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.controller.FormController;
 import com.revature.controller.LoginController;
 import com.revature.controller.RequestController;
 import com.revature.controller.UserController;
@@ -22,6 +23,10 @@ public class JsonRequestHelper {
 		case "/MoonberryTRMS/getrsession.json": //this might break tbh. fix in request.js if it do
 			RequestController.returnRequest(req, res);
 		
+			break;
+		case("/MoonberryTRMS/postform.json"):
+			System.out.println("in json request helper for post form");
+			FormController.submit(req, res);
 			break;
 		default:
 			System.out.println("This the default, you messed up.");

@@ -1,7 +1,14 @@
 /**
  * Handling form stuff.
  */
-alert("i work!");
+
+// This function grabbed off stackoverflow: https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+document.getElementById('current_date').value = new Date().toDateInputValue();
 document.getElementById("tuition_amount")
 		.addEventListener("change", estCost);
 document.getElementById("event_type")
@@ -43,3 +50,26 @@ function estCost() {
 	}
 	
 }
+const button = document.getElementById('submit-btn');
+button.addEventListener('click', async _ => {
+	console.log("submit form button clicked");
+
+	var formElement = document.querySelector("form");
+	var formData = new FormData(formElement);
+	
+	var xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange= function(){
+		console.log("the ready state has changed");
+		// if(xhttp.readyState==4 && xhttp.status==200){
+		// 	let str = 'Printing xhttp here: '
+		// 	console.log(str.concat(xhttp.responseText));
+		// 	let user = JSON.parse(xhttp.responseText);
+		// 	console.log(user);
+		// }
+	}
+	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json");
+	xhttp.send(formData);
+	alert("Submitted successfully."); // FIX THIS LATER
+});
+

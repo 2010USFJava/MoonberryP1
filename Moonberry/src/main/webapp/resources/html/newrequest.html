@@ -9,9 +9,9 @@
 	
 	<body>
 		<h1>Reimbursement Form</h1>
-		<form id="form" action="form" method="POST">
+		<form id="form" name ="form" method="POST">
 			<input type="hidden" id="employee_id" name="employee_id" value="" />
-			<input type="hidden" id="current_date" name="current_date" value="" />
+			
 			<input type="hidden" id="rmbsb_amount" name="rmbsb_amount" value="" />
 			<div class="form-group">
 				<label for="event_type">Event Type:</label>
@@ -24,7 +24,11 @@
 					<option value="6">Others</option>
 				</select>
 			</div>
-			
+			<div class="form-group">
+				<label for="event_start_date">Today's Date:</label> 
+				<input type="date" name="current_date" class="form-control" id="current_date" required="required">
+			</div>
+	
 			<div class="form-group">
 				<label for="event_start_date">Event Start Date:</label> 
 				<input type="date" name="event_start_date" class="form-control" id="event_start_date" required="required">
@@ -68,7 +72,7 @@
 				<input type="text" class="form-control" id="work_just" name="work_just" placeholder="Enter work justification " required="required">
 			</div>
 			
-			<button type="submit" class="btn btn-success btn-block">Submit</button>
+			<button id = 'submit-btn' type="submit" class="btn btn-success btn-block">Submit</button>
 		</form>	
 		<script type = "text/javascript" src="..\js\newrequest.js"></script>
 		

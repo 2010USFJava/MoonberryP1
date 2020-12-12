@@ -20,7 +20,11 @@ public class Employee implements Serializable {
 	private String password;
 	private ArrayList<TR_Request> requests;
 	
-
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Employee(int employeeId, String firstname, String lastname, int departmentId, int directSuper,
 			String username, String password) {
 		super();
