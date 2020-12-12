@@ -14,7 +14,8 @@ function getReqs(){
 			
 			var reqList = JSON.parse(xhttp.responseText);
 			console.log(reqList);
-			CreateTableFromJSON(reqList);
+            CreateTableFromJSON(reqList);   
+            displayOptions(reqList);
 		}
 	}
 	xhttp.open("GET","http://localhost:8080/MoonberryTRMS/getrsession.json");
@@ -27,16 +28,15 @@ function displayOptions(reqList){
 
     var obj = jQuery.parseJSON(reqList);
     $.each(obj, function(key,value) {
-        optionText = value.employee_id; 
-        optionValue = value; 
+        optionText = value.requestId; 
+        optionValue = value.requestId; 
+        $('#sreq').append(`<option value="${optionValue}"> 
+                                       ${optionText} 
+                                  </option>`); 
   
         });
     
-            optionValue = 'premium'; 
-  
-            $('#select1').append(`<option value="${optionValue}"> 
-                                       ${optionText} 
-                                  </option>`); 
+      
 
 }
 
