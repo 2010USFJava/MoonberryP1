@@ -25,7 +25,7 @@ public class RequestService {
 		if(user.getClass().equals(a.getClass())) {
 			Approver thisUser =(Approver) user;
 			if(thisUser.getAtype().equals(Approver_Type.SUPERVISOR)) {
-				for(TR_Request t : adao.) { //TODO get requests by department??
+				for(TR_Request t : adao.getRequestBySuper(thisUser.getApproverid())) { 
 					myRequests.add(t);
 				}
 			}else if(thisUser.getAtype().equals(Approver_Type.BEN_CO)) {

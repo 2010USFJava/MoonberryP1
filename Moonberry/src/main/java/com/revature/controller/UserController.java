@@ -22,18 +22,20 @@ public class UserController {
 	
 	public static void getSessionUser(HttpServletRequest req, HttpServletResponse res) 
 											throws JsonProcessingException, IOException{
-		Approver a = new Approver();	
+		Approver a = new Approver();
 		Object thisUser = req.getSession().getAttribute("currentuser");
+		System.out.println("in user controller");
+	
 		if(thisUser.getClass().equals(a.getClass())) {
 			Approver aUser = (Approver) thisUser;
-			Cookie cookie = new Cookie(aUser.getUsername(),new ObjectMapper().writeValueAsString(aUser));
+			Cookie cookie = new Cookie("user",aUser.getUsername());
+			cookie.setMaxAge( 60 * 60);	
 			res.addCookie(cookie);
-			res.getWriter().write(new ObjectMapper().writeValueAsString(aUser));
 		}else {
 			Employee eUser = (Employee) thisUser;
-			Cookie cookie = new Cookie(eUser.getUsername(),new ObjectMapper().writeValueAsString(eUser));
+			Cookie cookie = new Cookie("user",eUser.getUsername());
+			cookie.setMaxAge( 60 * 60);
 			res.addCookie(cookie);
-			res.getWriter().write(new ObjectMapper().writeValueAsString(eUser));
 			
 		}
 		

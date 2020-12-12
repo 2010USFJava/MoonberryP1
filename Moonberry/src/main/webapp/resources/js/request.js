@@ -23,8 +23,20 @@ function getReqs(){
 	
 }
 
-function displayUser(){
+function displayOptions(reqList){
 
+    var obj = jQuery.parseJSON(reqList);
+    $.each(obj, function(key,value) {
+        optionText = value.employee_id; 
+        optionValue = value; 
+  
+        });
+    
+            optionValue = 'premium'; 
+  
+            $('#select1').append(`<option value="${optionValue}"> 
+                                       ${optionText} 
+                                  </option>`); 
 
 }
 
