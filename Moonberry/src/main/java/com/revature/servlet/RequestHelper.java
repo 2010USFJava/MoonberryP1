@@ -3,6 +3,8 @@ package com.revature.servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.controller.FormController;
+import com.revature.controller.FormViewController;
 import com.revature.controller.HomeController;
 import com.revature.controller.LoginController;
 import com.revature.controller.LogoutController;
@@ -31,6 +33,9 @@ public class RequestHelper {
 		case "/MoonberryTRMS/logout.trms":
 			System.out.println("You logged out");
 			return LogoutController.logout(req,res);
+		case "/MoonberryTRMS/newrequest.trms":
+			return FormViewController.view(req);
+			
 		default:
 			System.out.println("Your life? I'mma need that.");
 			return "resources/html/unsuccessfullogin.html";

@@ -1,7 +1,14 @@
 /**
  * Handling form stuff.
  */
-alert("i work!");
+
+// This function grabbed off stackoverflow: https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+document.getElementById('current_date').value = new Date().toDateInputValue();
 document.getElementById("tuition_amount")
 		.addEventListener("change", estCost);
 document.getElementById("event_type")
@@ -43,3 +50,37 @@ function estCost() {
 	}
 	
 }
+const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+	data[element.name] = element.value;
+	return data;
+  }, {});
+
+const button = document.getElementById('submit-btn');
+button.addEventListener('click', async _ => {
+	console.log("submit form button clicked");
+
+	var formElement = document.querySelector("form");
+	//var formData = new FormData(formElement);
+	var formData = formToJSON(formElement.elements);
+	console.log("TESTING IN BUTTON 0");
+	console.log(formData);
+	console.log("TESTING IN BUTTON 1");
+	var xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange= function(){
+		console.log("the ready state has changed");
+		// if(xhttp.readyState==4 && xhttp.status==200){
+		// 	let str = 'Printing xhttp here: '
+		// 	console.log(str.concat(xhttp.responseText));
+		// 	let user = JSON.parse(xhttp.responseText);
+		// 	console.log(user);
+		// }
+	}
+	var formString = JSON.stringify(formData);
+	let u = new URLSearchParams(formData).toString()
+	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json?"+u, true);
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.send();
+	alert("Submitted successfully."); // FIX THIS LATER
+});
+
