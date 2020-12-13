@@ -20,8 +20,6 @@ public class FormService {
 			String eventDescription, Grade_Format gradeFormat, Event_Type eventType, String workJust, boolean emailProvided) {
 		System.out.println("make request in formservice called!");
 		
-		//TODO: REMOVE THIS
-		employee = eDao.findById(1);
 		
 		double projectedRmbsment = Math.min(tuitionAmount * eventType.getRmbsmentCoverage(),
 			employee.getAvailRmbsment());
