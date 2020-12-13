@@ -10,13 +10,16 @@
 		<div class="login-controller">
 			<h4>Welcome Home Employee</h4>
 		</div>
-
+		
 		<a href="/MoonberryTRMS/request.view.trms" >go to request page</a>
 		<a href="/MoonberryTRMS/newrequest.trms" >Create New Request</a>
 		<a href="/MoonberryTRMS/logout.trms" >Logout</a>
 
+		<input type="hidden" name="currentuser" value="${sessionScope.currentuser}"/>
 
-	<script type="text/javascript" src="resources/js/home.js"></script>
+
+
+		<script type="text/javascript" src="resources/js/home.js"></script>
 
 
 	</body>

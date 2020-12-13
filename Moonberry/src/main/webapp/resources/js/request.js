@@ -11,7 +11,6 @@ function getReqs(){
 		
 		console.log("the ready state has changed");
 		if(xhttp.readyState==4 && xhttp.status==200){
-			
 			var reqList = JSON.parse(xhttp.responseText);
 			console.log(reqList);
             CreateTableFromJSON(reqList);   
@@ -24,16 +23,17 @@ function getReqs(){
 	
 }
 
-function displayOptions(reqList){
-
-    var obj = jQuery.parseJSON(reqList);
-    $.each(obj, function(key,value) {
-        optionText = value.requestId; 
-        optionValue = value.requestId; 
-        $('#sreq').append(`<option value="${optionValue}"> 
-                                       ${optionText} 
-                                  </option>`); 
-  
+function displayOptions(reqList){  //pass in already parsed json
+    console.log("I was called!");
+    var obj = reqList;//this is kind of useless but obj is shorter lol
+    console.log(obj); //print to  check!
+    $.each(obj, function(key,value) { //for each object in reqList:(index, json )
+        console.log(key);
+        console.log(value.requestId); //json.parameter, will pass in the value associated with the parameter
+        optionText = value.requestId; //stores the seen text in option
+        optionValue = value.requestId; //stores a value that is passed in when this option is chosen
+        $('#sreq').append(`<option value="${optionValue}">${optionText}</option>`);
+         //^^^
         });
     
       
