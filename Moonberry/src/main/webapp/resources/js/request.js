@@ -43,7 +43,7 @@ function displayOptions(id, reqList){  //pass in already parsed json
 function displayActions(){
     // var u = document.getElementsByTagName("currentu"), currentuser;
     // urrentuser = u.getAttribute("currentuser")
-    var currentu = '<%= Session["currentuser"] %>'
+    var currentu = '<%= session.getAttribute("currentuser") %>';
     // var currentuser = JSON.parse(currentu);
     var currentuser = currentu
     console.log(currentuser);
@@ -120,3 +120,25 @@ function CreateTableFromJSON(howdy) {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
+
+/* attach a submit handler to the form */
+$("#actionsform").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+  
+    
+    //var myform = $(this);;
+    $.ajax({
+        url:'http://localhost:8080/MoonberryTRMS/actionform.json',
+        data: $('#actionsform').serialize(),
+        type: 'POST',
+        dataType: 'json',
+        success: function (fd) {
+            alert("Action was successfully submitted!");
+        }
+    });
+  
+    
+  });
+

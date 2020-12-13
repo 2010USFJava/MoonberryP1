@@ -3,7 +3,9 @@ package com.revature.service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+import com.revature.dao.ApproverDao;
 import com.revature.dao.EmployeeDao;
+import com.revature.daoimpl.ApproverDaoImpl;
 import com.revature.daoimpl.EmployeeDaoImpl;
 import com.revature.model.Employee;
 import com.revature.model.Event_Type;
@@ -14,6 +16,7 @@ import com.revature.model.TR_Request;
 public class FormService {
 	
 	EmployeeDao eDao = new EmployeeDaoImpl();
+	ApproverDao adao = new ApproverDaoImpl();
 	
 	public void makeTRMSRequest(Employee employee, LocalDateTime requestMadeDate, double tuitionAmount,
 			LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventName, String eventLocation,
@@ -45,6 +48,14 @@ public class FormService {
 				projectedRmbsment, gradeFormat, eventType, workJust, urgent, requestMadeDate);
 		eDao.makeRequest(request);
 	}
+		
+	}
+	//TODO action date how?
+	public void action (int rsid, int id, LocalDateTime ld) {
+		TR_Request tr = adao.getRequestById(id);
+		RS rs = RS.valueOfStatusCode(rsid);
+		adao.setApprovalStatus(rs, tr, ld);
+		
 		
 	}
 }

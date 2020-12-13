@@ -30,7 +30,7 @@ public class JsonRequestHelper {
 			break;
 		case("/MoonberryTRMS/actionform.json"):
 			System.out.println("in json request helper for action form");
-			//add controller stuff lol
+			FormController.actionSubmit(req, res);
 			break;
 		default:
 			System.out.println("This the default, you messed up.");

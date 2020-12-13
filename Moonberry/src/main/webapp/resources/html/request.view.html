@@ -8,6 +8,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
+        <script> 
+        // wait for the DOM to be loaded 
+            $(document).ready(function() { 
+            // bind 'myForm' and provide a simple callback function 
+                $('#actionsform').ajaxForm(function() { 
+                    alert("Your action was submitted successfully"); 
+                }); 
+            }); 
+        </script> 
 
     </head>
 
@@ -21,17 +31,17 @@
         <div>
             <form name="actions" id="actionsform" class="form-inline">
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Request Id</label>
-                <select id ='sreq' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Request via Id">
+                <select name="actid" id ='sreq' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Request via Id">
                 </select>
 
                 
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Action</label>
-                <select id ='action'class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Action to perform"> 
+                <select name="choice" id ='action'class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Action to perform"> 
                 </select>
 
                 <input type="file" class="form-control-file" id="media">
             
-                <button type="submit" class="btn btn-primary my-1" action= "$.post('http://localhost:8080/MoonberryTRMS/actionform.json', $('#actionsform').serialize())">Submit</button>
+                <button type="submit" class="btn btn-primary my-1">Submit</button>
             </form>
 
             <input type="hidden" name="currentu" value="${sessionScope.currentuser}"/>
