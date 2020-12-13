@@ -28,9 +28,8 @@ public class FormController {
 		}
 		Object thisUser = req.getSession().getAttribute("currentuser");
 		if (thisUser == null) {
-			//TODO: login first 
-			System.out.println("session user not found");
-			thisUser = new Employee();
+			System.err.println("session user not found");
+			return;
 		}
 		if (thisUser.getClass().equals(Employee.class)) {
 			System.out.println("form controller got the user employee");
