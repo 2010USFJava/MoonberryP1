@@ -15,6 +15,8 @@ function getUser(){
 		
 		console.log("the ready state has changed");
 		if(xhttp.readyState==4 && xhttp.status==200){
+			//var user = JSON.parse(xhttp.responseText);
+			//console.log(user);
 			
 		}
 	}

@@ -1,5 +1,5 @@
 window.onload=function(){
-	console.log("window");
+    console.log("window");
 	getReqs();
 	
 
@@ -40,27 +40,38 @@ function displayOptions(id, reqList){  //pass in already parsed json
 
     });
 }
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 function displayActions(){
-    // var u = document.getElementsByTagName("currentu"), currentuser;
-    // urrentuser = u.getAttribute("currentuser")
-    var currentu = '<%= session.getAttribute("currentuser") %>';
-    // var currentuser = JSON.parse(currentu);
-    var currentuser = currentu
-    console.log(currentuser);
-    if (currentuser) {
-        if (currentuser.atype==="SUPERVISOR") {
+    // // var u = document.getElementsByTagName("currentu"), currentuser;
+    // // urrentuser = u.getAttribute("currentuser")
+    // var currentu = '<%= session.getAttribute("currentuser") %>';
+    // // var currentuser = JSON.parse(currentu);
+    var u ="utype";
+    var utype= readCookie(u);
+    console.log(utype);
+    if (utype) {
+        if (utype==="SUPERVISOR") {
             $('#action').append(`<option value="3">"Request additional details"</option>`);
             $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
             $('#action').append(`<option value="9">"Reject"</option>`);
         
-        } else if (currentuser.atype==="DEPARTMENT_HEAD"){
+        } else if (utype==="DEPARTMENT_HEAD"){
             $('#action').append(`<option value="3">"Request additional details"</option>`);
             $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
             $('#action').append(`<option value="9">"Reject"</option>`);
             $('#action').append(`<option value="6">"Give Department Head Level Approval"</option>`);
             $('#action').append(`<option value="13">"Reject"</option>`);
         
-        }else if (currentuser.atype==="BEN_CO"){
+        }else if (utype==="BEN_CO"){
             $('#action').append(`<option value="3">"Request additional details"</option>`);
             $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
             $('#action').append(`<option value="9">"Reject"</option>`);
@@ -140,5 +151,5 @@ $("#actionsform").submit(function(event) {
     });
   
     
-  });
+});
 

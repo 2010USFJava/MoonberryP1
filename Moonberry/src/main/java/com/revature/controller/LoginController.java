@@ -35,16 +35,21 @@ public class LoginController {
 			req.getSession().setAttribute("currentuser", aUser);
 			req.getSession().setAttribute("sessionid", sessionId);
 			Cookie cookie = new Cookie("user",aUser.getUsername());
+			Cookie cookie2 = new Cookie("utype",aUser.getAtype().toString());
+			System.out.println(cookie2);
 			cookie.setMaxAge( 60 * 60);	
 			res.addCookie(cookie);
+			res.addCookie(cookie2);
 			return "apphome.trms";
 		}else{
 			Employee eUser = (Employee) user;
 			req.getSession().setAttribute("currentuser", eUser);
 			req.getSession().setAttribute("sessionid", sessionId);
 			Cookie cookie = new Cookie("user",eUser.getUsername());
+			Cookie cookie2 = new Cookie("utype","employee");
 			cookie.setMaxAge( 60 * 60);	
 			res.addCookie(cookie);
+			res.addCookie(cookie2);
 			return "emphome.trms"; //TODO this doesn't exist yet, make it so
 		}
 
