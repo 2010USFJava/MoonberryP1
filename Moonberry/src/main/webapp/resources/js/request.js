@@ -14,7 +14,7 @@ function getReqs(){
 			var reqList = JSON.parse(xhttp.responseText);
 			console.log(reqList);
             CreateTableFromJSON(reqList);   
-            displayOptions(reqList);
+            displayOptions('#sreq', reqList);
 		}
 	}
 	xhttp.open("GET","http://localhost:8080/MoonberryTRMS/getrsession.json");
@@ -23,20 +23,26 @@ function getReqs(){
 	
 }
 
-function displayOptions(reqList){  //pass in already parsed json
-    console.log("I was called!");
+function displayOptions(id, reqList){  //pass in already parsed json
+    //console.log("I was called!");
     var obj = reqList;//this is kind of useless but obj is shorter lol
-    console.log(obj); //print to  check!
+    //console.log(obj); //print to  check!
     $.each(obj, function(key,value) { //for each object in reqList:(index, json )
         console.log(key);
-        console.log(value.requestId); //json.parameter, will pass in the value associated with the parameter
+        console.log(value.requestId); //javaobject.parameter, will pass in the value associated with the parameter
         optionText = value.requestId; //stores the seen text in option
         optionValue = value.requestId; //stores a value that is passed in when this option is chosen
-        $('#sreq').append(`<option value="${optionValue}">${optionText}</option>`);
-         //^^^
-        });
+        $(`${id}`).append(`<option value="${optionValue}">${optionText}</option>`);
+        //^^^ id of the select tag in yout form
+        //                ^^^^^^^^ appends a new option
+        var u = document.getElementById("action"), currentuser;
+        currentuser = u.getAttribute("currentuser")
+        console.log(currentuser);
+        //if(currentuser.atype==null)
+
+    });
+        
     
-      
 
 }
 
