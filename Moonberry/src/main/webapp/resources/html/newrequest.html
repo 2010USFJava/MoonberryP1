@@ -10,11 +10,16 @@
 	<body>
 		<h1>Reimbursement Form</h1>
 		<form id="form" name ="form" method="POST">
-			<input type="hidden" id="employee_id" name="employee_id" value="" />
+			<!-- <input type="hidden" id="employee_id" name="employee_id" value="" /> -->
 			
 			<div class="form-group">
+				<label for="event_name">Event Name:</label>
+				<input type="text" class="form-control" id="event_name" name="event_name" placeholder="Event name " required maxlength="50">
+			</div>
+
+			<div class="form-group">
 				<label for="event_type">Event Type:</label>
-				<select name="event_type" class="form-control" id="event_type" required="required">
+				<select name="event_type" class="form-control" id="event_type" required>
 					<option value="1" selected="selected">University Course</option>
 					<option value="2">Seminar</option>
 					<option value="3">Certification Preparation Course</option>
@@ -25,40 +30,50 @@
 			</div>
 			<div class="form-group">
 				<label for="event_start_date">Today's Date:</label> 
-				<input type="date" name="current_date" class="form-control" id="current_date" required="required">
+				<input type="date" name="current_date" class="form-control" id="current_date" required>
 			</div>
 	
 			<div class="form-group">
 				<label for="event_start_date">Event Start Date:</label> 
-				<input type="datetime-local" name="event_start_date" class="form-control" id="event_start_date" required="required">
+				<input type="datetime-local" name="event_start_date" class="form-control" id="event_start_date" required>
 			</div>
 			<div class="form-group">
 				<label for="event_end_date">Event End Date:</label> 
-				<input type="datetime-local" name="event_end_date" class="form-control" id="event_end_date" required="required">
+				<input type="datetime-local" name="event_end_date" class="form-control" id="event_end_date" required>
 			</div>
 		
 			<div class="form-group">
 				<label for="event_address">Event Address:</label> 
-				<input type="text" class="form-control" id="event_address" name="event_address" placeholder="Enter address" required="required">
+				<input type="text" class="form-control" id="event_address" name="event_address" placeholder="Enter address" required>
 	
 				<label for="event_city">Event City:</label>
-				<input type="text" name="event_city" pattern="[A-Za-z]*" class="form-control" id="event_city" placeholder="Enter city " required="required">
+				<input type="text" name="event_city" pattern="[A-Za-z]*" class="form-control" id="event_city" placeholder="Enter city " required>
 
 				<label for="event_state">Event State:</label> 
-				<input type="text" name="event_state" pattern="[A-Za-z]{2}" class="form-control" id="event_state" placeholder="Enter state " minlength="2" maxlength="2" required="required">
+				<input type="text" name="event_state" pattern="[A-Za-z]{2}" class="form-control" id="event_state" placeholder="Enter state " minlength="2" maxlength="2" required>
 
 				<label for="event_zip">Event Zip Code:</label> 
-				<input type="number" name="event_zip" class="form-control" id="event_zip" maxlength="5" placeholder="Enter zipcode " required="required">
+				<input type="number" name="event_zip" class="form-control" id="event_zip" maxlength="5" placeholder="Enter zipcode " required>
 			</div>
 			
 			<div class="form-group">
 				<label for="event_description">Event Description:</label>
-				<input type="text" class="form-control" id="event_description" name="event_description" placeholder="Enter event description " required="required">
+				<input type="text" class="form-control" id="event_description" name="event_description" placeholder="Enter event description " required>
+			</div>
+			
+			<div class="form-group">
+				<label for="grade_format">Grade Format:</label>
+				<select name="grade_format" class="form-control" id="grade_format" required>
+					<option value="1" selected="selected">Letter</option>
+					<option value="2">Pass/Fail</option>
+					<option value="3">Percentage</option>
+					<option value="4">Completion</option>
+				</select>
 			</div>
 			
 			<div class="form-group">
 				<label for="tuition_amount">Request Amount:</label> 
-				<input type="number" class="form-control" name="tuition_amount" id="tuition_amount" step="0.01" max="1000" placeholder="Enter amount " required="required">
+				<input type="number" class="form-control" name="tuition_amount" id="tuition_amount" step="0.01" max="1000" placeholder="Enter amount " required>
 			</div>
 			
 			<div class="form-group">
@@ -68,7 +83,7 @@
 			
 			<div class="form-group">
 				<label for="work_just">Work Justification:</label>
-				<input type="text" class="form-control" id="work_just" name="work_just" placeholder="Enter work justification " required="required">
+				<input type="text" class="form-control" id="work_just" name="work_just" placeholder="Enter work justification " required>
 			</div>
 			
 			<button id = 'submit-btn' type="submit" class="btn btn-success btn-block">Submit</button>

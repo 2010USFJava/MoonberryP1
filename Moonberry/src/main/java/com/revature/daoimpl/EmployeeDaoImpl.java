@@ -25,91 +25,6 @@ import com.revature.util.ConnFactory;
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	public static ConnFactory cf = ConnFactory.getInstance();
-
-	/**
-	 * Makes a request and stores in the database. If the request is valid, the
-	 * employee's available reimbursement is adjusted.
-	 * 
-	 * @param eventType:       The type of event
-	 * @param requestDate:     The date the TR is being requested
-	 * @param tuitionAmount:   The cost of the event
-	 * @param eventStartDate
-	 * @param eventEndDate
-	 * @param eventName
-	 * @param eventLocation
-	 * @param eventDescription
-	 * @param gradeFormat
-	 * @param workJust:        Justification for reimbursement.
-	 * @return null if the request is invalid.
-	 */
-//	public TR_Request makeRequest(Employee employee, LocalDateTime requestMadeDate, double tuitionAmount,
-//			LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventName, String eventLocation,
-//			String eventDescription, Grade_Format gradeFormat, Event_Type eventType, String workJust,
-//			boolean emailProvided) {
-//
-//		TR_Request r = null;
-//		try {
-//			Connection conn = cf.getConnection();
-//			String sql = "insert into tr_request values(default,?,?,?,?,?,?,?,?,?,?,CAST(? AS grade_format),CAST(? AS event_type),?,?,?)";
-//			PreparedStatement ps = conn.prepareStatement(sql);//, PreparedStatement.RETURN_GENERATED_KEYS);
-//
-//			double projectedRmbsment = Math.min(tuitionAmount * eventType.getRmbsmentCoverage(),
-//					employee.getAvailRmbsment());
-//
-//			long daysUntilStart = requestMadeDate.until(eventStartDate, ChronoUnit.DAYS);
-//			if (daysUntilStart < 7) {
-//				return null;
-//				//TODO: Exception may be thrown :D 
-//			}
-//			boolean urgent = (daysUntilStart < 14);
-//
-//			if (emailProvided)
-//				ps.setInt(1, RS.AWAIT_BENCO_APPROVAL.getStatusCode());
-//			else {
-//				if (this.isSuperAlsoDptHead(employee))
-//					ps.setInt(1, RS.AWAIT_DPT_HEAD_APPROVAL.getStatusCode());
-//				else 
-//					ps.setInt(1, RS.AWAIT_SUPER_APPROVAL.getStatusCode());
-//			}
-//				
-//			ps.setInt(2, employee.getEmployeeId());
-//
-//			ps.setTimestamp(3, Timestamp.valueOf(requestMadeDate));
-//			ps.setTimestamp(4, Timestamp.valueOf(eventStartDate));
-//			ps.setTimestamp(5, Timestamp.valueOf(eventEndDate));
-//			ps.setString(6, eventName);
-//			ps.setString(7, eventLocation);
-//			ps.setString(8, eventDescription);
-//			ps.setDouble(9, tuitionAmount);
-//			ps.setDouble(10, projectedRmbsment);
-//			ps.setString(11, gradeFormat.toString().toLowerCase());
-//			ps.setString(12, eventType.toString().toLowerCase());
-//			ps.setString(13, workJust);
-//			ps.setBoolean(14, urgent);
-//			ps.setTimestamp(15, Timestamp.valueOf(requestMadeDate));
-//			ps.executeUpdate();
-//			ResultSet keys = ps.getGeneratedKeys();
-//			int requestId = -1;
-//			if (keys.next())
-//				requestId = keys.getInt(1);
-//			if (emailProvided)
-//				r = new TR_Request(requestId, RS.AWAIT_BENCO_APPROVAL, employee.getEmployeeId(), requestMadeDate,
-//						eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, tuitionAmount,
-//						projectedRmbsment, gradeFormat, eventType, workJust, urgent, requestMadeDate);
-//			else
-//				r = new TR_Request(requestId, RS.AWAIT_SUPER_APPROVAL, employee.getEmployeeId(), requestMadeDate,
-//						eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, tuitionAmount,
-//						projectedRmbsment, gradeFormat, eventType, workJust, urgent, requestMadeDate);
-//			double newAvailRmbsment = employee.getAvailRmbsment() - projectedRmbsment;
-//			employee.setAvailRmbsment(newAvailRmbsment);
-//			this.update(employee, newAvailRmbsment);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//		return r;
-//		// TODO: Log creation of request
-//	}
 	
 	@Override
 	public void makeRequest(TR_Request tr) {
@@ -138,6 +53,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (keys.next())
 				requestId = keys.getInt(1);
 			tr.setRequestId(requestId);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,9 @@
 package com.revature.servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +27,19 @@ public class JsonMainServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		System.out.println("in doPost");
+		System.out.println("in JsonMain doPost");
+		
+//		Enumeration<String> names = req.getHeaderNames();
+//        while(names.hasMoreElements()) {
+//            String name = names.nextElement();
+//          System.out.println(name + "=" + req.getHeader(name));
+//        }
+//		
+//        HashMap<String, String[]> mapping = new HashMap<String, String[]>(req.getParameterMap());
+//		for (String key : mapping.keySet()) {
+//			System.out.println("key: " + key + ", value: " + Arrays.toString(mapping.get(key)));
+//		}
+		
 		JsonRequestHelper.process(req,res);
 		
 	}

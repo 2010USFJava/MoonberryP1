@@ -81,6 +81,6 @@ button.addEventListener('click', async _ => {
 	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json?"+u, true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send();
-	alert("Submitted successfully."); // FIX THIS LATER
+	alert("Request submitted."); // FIX THIS LATER
 });
 
