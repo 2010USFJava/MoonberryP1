@@ -15,6 +15,7 @@ function getReqs(){
 			console.log(reqList);
             CreateTableFromJSON(reqList);   
             displayOptions('#sreq', reqList);
+            displayActions();
 		}
 	}
 	xhttp.open("GET","http://localhost:8080/MoonberryTRMS/getrsession.json");
@@ -35,15 +36,48 @@ function displayOptions(id, reqList){  //pass in already parsed json
         $(`${id}`).append(`<option value="${optionValue}">${optionText}</option>`);
         //^^^ id of the select tag in yout form
         //                ^^^^^^^^ appends a new option
-        var u = document.getElementById("action"), currentuser;
-        currentuser = u.getAttribute("currentuser")
-        console.log(currentuser);
-        //if(currentuser.atype==null)
+        
 
     });
+}
+function displayActions(){
+    // var u = document.getElementsByTagName("currentu"), currentuser;
+    // urrentuser = u.getAttribute("currentuser")
+    var currentu = '<%= Session["currentuser"] %>'
+    // var currentuser = JSON.parse(currentu);
+    var currentuser = currentu
+    console.log(currentuser);
+    if (currentuser) {
+        if (currentuser.atype==="SUPERVISOR") {
+            $('#action').append(`<option value="3">"Request additional details"</option>`);
+            $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
+            $('#action').append(`<option value="9">"Reject"</option>`);
         
-    
-
+        } else if (currentuser.atype==="DEPARTMENT_HEAD"){
+            $('#action').append(`<option value="3">"Request additional details"</option>`);
+            $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
+            $('#action').append(`<option value="9">"Reject"</option>`);
+            $('#action').append(`<option value="6">"Give Department Head Level Approval"</option>`);
+            $('#action').append(`<option value="13">"Reject"</option>`);
+        
+        }else if (currentuser.atype==="BEN_CO"){
+            $('#action').append(`<option value="3">"Request additional details"</option>`);
+            $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
+            $('#action').append(`<option value="9">"Reject"</option>`);
+            $('#action').append(`<option value="7">"Make request changes"</option>`);//this should work but....
+            $('#action').append(`<option value="6">"Give Department Head Level Approval"</option>`);
+            $('#action').append(`<option value="8">"Give Ben_Co Level Approval|Grade"</option>`);
+            $('#action').append(`<option value="9">"Give Ben_Co Level Approval|Present"</option>`);
+            $('#action').append(`<option value="12">"Escalate Request"</option>`);
+            $('#action').append(`<option value="13">"Reject"</option>`);
+            $('#action').append(`<option value="14">"Approve and Award"</option>`);
+        }else {
+            $('#action').append(`<option value="4">"Provide additional details"</option>`);
+            $('#action').append(`<option value="10">"Submit final grade"</option>`);
+            $('#action').append(`<option value="11">"Submit final presentation"</option>`);
+            $('#action').append(`<option value="13">"Reject"</option>`);
+        }
+    }
 }
 
 function CreateTableFromJSON(howdy) {

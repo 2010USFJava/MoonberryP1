@@ -28,6 +28,10 @@ public class JsonRequestHelper {
 			System.out.println("in json request helper for post form");
 			FormController.submit(req, res);
 			break;
+		case("/MoonberryTRMS/actionform.json"):
+			System.out.println("in json request helper for action form");
+			//add controller stuff lol
+			break;
 		default:
 			System.out.println("This the default, you messed up.");
 			//SuperVillain vill = new SuperVillain("?","?",0);

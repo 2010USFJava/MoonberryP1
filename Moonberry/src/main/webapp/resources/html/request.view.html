@@ -19,23 +19,22 @@
         </div>
         
         <div>
-            <form name="actions" class="form-inline">
+            <form name="actions" id="actionsform" class="form-inline">
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Request Id</label>
                 <select id ='sreq' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Request via Id">
-                  
-
                 </select>
 
                 
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Action</label>
-                <select id ='action'class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Action to perform">
-                    
+                <select id ='action'class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" placeholder="Select Action to perform"> 
                 </select>
 
                 <input type="file" class="form-control-file" id="media">
             
-                <button type="submit" class="btn btn-primary my-1">Submit</button>
+                <button type="submit" class="btn btn-primary my-1" action= "$.post('http://localhost:8080/MoonberryTRMS/actionform.json', $('#actionsform').serialize())">Submit</button>
             </form>
+
+            <input type="hidden" name="currentu" value="${sessionScope.currentuser}"/>
         </div>
         
     
