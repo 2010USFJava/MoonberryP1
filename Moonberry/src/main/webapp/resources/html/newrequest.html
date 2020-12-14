@@ -29,7 +29,7 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="event_start_date">Today's Date:</label> 
+				<label for="current_date">Today's Date:</label> 
 				<input type="date" name="current_date" class="form-control" id="current_date" required>
 			</div>
 	
@@ -85,9 +85,27 @@
 				<label for="work_just">Work Justification:</label>
 				<input type="text" class="form-control" id="work_just" name="work_just" placeholder="Enter work justification " required>
 			</div>
+
+			<div class="form-optional">
+				<label for="attached_file">Attach Supporting Documents(Optional):</label> 
+				<input type="file" id="attached_file" name="attached_file" accept=".pdf, .png, .jpeg, .jpg, .txt, .doc, .msg" /> 
+				<br />
+			</div>
+
+			<div class="form-optional">
+				<label for="email_radio">Do you have an approver's email?</label>
+				<input type="radio" name="tab" onclick="email_show_yes();"/>Yes
+				<input type="radio" name="tab" onclick="email_show_no();"/>No
+
+			</div>
 			
-			<button id = 'submit-btn' type="submit" class="btn btn-success btn-block">Submit</button>
+			<div class="form-optional" hidden id="attach_email">
+				<label for="attached_file">Attach Email:</label> 
+				<input type="file" id="attached_file" name="attached_file" accept=".msg" /> 
+				<br />
+			</div>
 		</form>	
+		<button type="submit" id = 'submit-btn'>Submit</button>
 		<script type = "text/javascript" src="..\js\newrequest.js"></script>
 		
 	</body>

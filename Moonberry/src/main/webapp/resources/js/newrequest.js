@@ -50,6 +50,44 @@ function estCost() {
 	}
 	
 }
+
+function checkValidSubmissionDate() {
+	var curDate = new Date(document.getElementById("current_date").value);
+	var startDate = new Date(document.getElementById("event_start_date").value);
+	var diff = (startDate.getTime() - curDate.getTime()) / (1000 * 3600 * 24); 
+	if (diff < 7) {
+		return false;
+	}
+	return true;
+}
+
+function checkValidEventDates() {
+	var startDate = new Date(document.getElementById("event_start_date").value);
+	var endDate = new Date(document.getElementById("event_end_date").value);
+	var diff = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24); 
+	if (diff < 0) {
+		return false;
+	}
+	return true;
+}
+
+function validateForm() {
+	var formElements = document.getElementsByClassName("form-control");
+	var i;
+	for (i = 0; i < formElements.length; i++) {
+		if (formElements[i].value == "")
+			return false;
+	}
+	return true;
+}
+
+function email_show_yes() {
+	document.getElementById("attach_email").hidden = false;
+}
+function email_show_no() {
+	document.getElementById("attach_email").hidden = true;
+}
+
 const formToJSON = elements => [].reduce.call(elements, (data, element) => {
 	data[element.name] = element.value;
 	return data;
@@ -58,29 +96,38 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
 const button = document.getElementById('submit-btn');
 button.addEventListener('click', async _ => {
 	console.log("submit form button clicked");
-
-	var formElement = document.querySelector("form");
-	//var formData = new FormData(formElement);
-	var formData = formToJSON(formElement.elements);
-	console.log("TESTING IN BUTTON 0");
-	console.log(formData);
-	console.log("TESTING IN BUTTON 1");
-	var xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange= function(){
-		console.log("the ready state has changed");
-		// if(xhttp.readyState==4 && xhttp.status==200){
-		// 	let str = 'Printing xhttp here: '
-		// 	console.log(str.concat(xhttp.responseText));
-		// 	let user = JSON.parse(xhttp.responseText);
-		// 	console.log(user);
-		// }
+	var alertMsg = "Request submitted.";
+	var submit = true;
+	if (!validateForm()) {
+		submit = false;
+		alertMsg = "Please complete the form."
 	}
-	var formString = JSON.stringify(formData);
-	let u = new URLSearchParams(formData).toString()
-	xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json?"+u, true);
-	xhttp.setRequestHeader("Content-Type", "application/json");
-	xhttp.send();
-	alert("Request submitted."); // FIX THIS LATER
+	if (submit) {
+		if (!checkValidSubmissionDate()) {
+			submit = false;
+			alertMsg = "Form must be completed at least one week prior to the start of the event."
+		}
+		else if (!checkValidEventDates()) {
+			submit = false;
+			alertMsg = "Event cannot end before it begins."
+		}
+	}
+	if (submit) {
+		var formElement = document.querySelector("form");
+		//var formData = new FormData(formElement);
+		var formData = formToJSON(formElement.elements);
+		console.log(formData);
+	
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange= function(){
+			console.log("the ready state has changed");
+		}
+		var formString = JSON.stringify(formData);
+		let u = new URLSearchParams(formData).toString()
+		xhttp.open("POST","http://localhost:8080/MoonberryTRMS/postform.json?"+u, true);
+		xhttp.setRequestHeader("Content-Type", "application/json");
+		xhttp.send();
+	}
+	alert(alertMsg); 
 });
 
