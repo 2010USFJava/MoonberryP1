@@ -1,14 +1,10 @@
 package com.revature.controller;
 
-import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.revature.util.LogThis;
 
 public class LogoutController {
 	
@@ -22,8 +18,8 @@ public class LogoutController {
 				res.addCookie(c);
 				res.addCookie(ck);
 				res.addCookie(c2);
+				LogThis.LogIt("info", "User " + req.getSession().getAttribute("user") + " successfully logged out");
 				req.getSession().invalidate();
-				//return "resources/html/apphome.html";
 				return "resources/html/logout.html";
 				
 			

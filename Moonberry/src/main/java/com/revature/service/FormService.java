@@ -12,6 +12,7 @@ import com.revature.model.Event_Type;
 import com.revature.model.Grade_Format;
 import com.revature.model.RS;
 import com.revature.model.TR_Request;
+import com.revature.util.LogThis;
 
 public class FormService {
 	
@@ -47,6 +48,7 @@ public class FormService {
 				eventStartDate, eventEndDate, eventName, eventLocation, eventDescription, tuitionAmount,
 				projectedRmbsment, gradeFormat, eventType, workJust, urgent, requestMadeDate);
 		eDao.makeRequest(request);
+		LogThis.LogIt("info", employee.getEmployeeId() + " submitted a trms request.");
 	}
 		
 	}
@@ -55,7 +57,7 @@ public class FormService {
 		TR_Request tr = adao.getRequestById(id);
 		RS rs = RS.valueOfStatusCode(rsid);
 		adao.setApprovalStatus(rs, tr, ld);
-		
+		LogThis.LogIt("info", "Request "+ id + " was changed to status " + rs.toString());
 		
 	}
 }

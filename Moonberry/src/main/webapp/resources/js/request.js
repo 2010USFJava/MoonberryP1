@@ -73,8 +73,7 @@ function displayActions(){
         
         }else if (utype==="BEN_CO"){
             $('#action').append(`<option value="3">"Request additional details"</option>`);
-            $('#action').append(`<option value="5">"Give Super Level Approval"</option>`);
-            $('#action').append(`<option value="9">"Reject"</option>`);
+            $('#action').append(`<option value="5">"Give Super Level Approval"</option>`)
             $('#action').append(`<option value="7">"Make request changes"</option>`);//this should work but....
             $('#action').append(`<option value="6">"Give Department Head Level Approval"</option>`);
             $('#action').append(`<option value="8">"Give Ben_Co Level Approval|Grade"</option>`);
@@ -113,8 +112,7 @@ function CreateTableFromJSON(howdy) {
     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
     var tr = table.insertRow(-1);                   // TABLE ROW.
     for (var i = 0; i < col.length; i++) {
-		var th = document.createElement("th"); 
-		th.classList.add("thead-dark");  // TABLE HEADER.
+		var th = document.createElement("th");   // TABLE HEADER.
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
