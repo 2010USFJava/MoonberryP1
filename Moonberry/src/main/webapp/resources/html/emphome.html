@@ -3,21 +3,44 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Approver home page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
+		<title>Employee home page</title>
 	</head>
 		
 	<body>
-		<div class="login-controller">
-			<h4>Welcome Home Employee</h4>
-		</div>
-		
-		<a href="/MoonberryTRMS/request.view.trms" >go to request page</a>
-		<a href="/MoonberryTRMS/newrequest.trms" >Create New Request</a>
-		<a href="/MoonberryTRMS/logout.trms" >Logout</a>
-
-		<input type="hidden" name="currentuser" value="${sessionScope.currentuser}"/>
-
-
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="#">Team Moonberry TRMS</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+		  
+			<div class="collapse navbar-collapse" id="navbarColor01">
+			  
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				  <a class="nav-link" href="/MoonberryTRMS/apphome.trms">Employee Home
+					<span class="sr-only">(current)</span>
+				  </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/MoonberryTRMS/request.view.trms">View Requests</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/MoonberryTRMS/newrequest.trms">Submit New Request</a>
+				</li>
+	
+				<li class="nav-item">
+				  <a class="nav-link" href="/MoonberryTRMS/logout.trms">Log Out</a>
+				</li>
+			  </ul>
+			</div>
+		  </nav>
+	
 		<!--TODO: CHANGE THIS BACK-->
 		<script type="text/javascript" src="resources/js/home.js"></script>
 

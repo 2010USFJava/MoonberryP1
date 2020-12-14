@@ -84,7 +84,7 @@ public class FormController {
 			System.out.println("form controller got the user employee");
 			Employee euser = (Employee) thisUser;
 			int id = Integer.parseInt(req.getParameter("actid"));
-			int rsId = Integer.parseInt(req.getParameter("choce"));
+			int rsId = Integer.parseInt(req.getParameter("choice"));
 			fServ.action(rsId,id,LocalDateTime.now()); //TODO add date param to action form
 			//TODO call serve method
 		} else if(thisUser.getClass().equals(Approver.class)){
