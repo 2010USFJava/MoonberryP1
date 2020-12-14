@@ -7,6 +7,7 @@ drop table status_code;
 select * from tr_request;
 select * from employee;
 select * from approver ;
+select * from department;
 create type grade_format as enum('letter','pass_fail','percentage','completion');
 create type event_type as enum('university_course','seminar','cert_prep_course','cert','tech_training','other');
 create type approver_type as enum('supervisor','department_head','ben_co');

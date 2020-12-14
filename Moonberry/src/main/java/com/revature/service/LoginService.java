@@ -53,8 +53,6 @@ public class LoginService {
 		// TODO Auto-generated constructor stub
 	}
 
-//	public void insertNewVillain(SuperVillain vill) {
-//		svdao.insertVillain(vill);
-//	}
+
 
 }

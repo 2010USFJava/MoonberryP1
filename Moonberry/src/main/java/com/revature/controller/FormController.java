@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.revature.model.Approver;
 import com.revature.model.Employee;
 import com.revature.model.Event_Type;
 import com.revature.model.Grade_Format;
@@ -63,6 +64,38 @@ public class FormController {
 				eventDescription, gradeF, eventT, workJust, false);
 		
 	
+		
+	}
+	
+	
+	
+	public static void actionSubmit(HttpServletRequest req, HttpServletResponse res)  {
+		
+		System.out.println("in action form controller");
+		if (!req.getMethod().equals("POST")) {
+			System.out.println("this is weird, form should be a post!");
+		}
+		Object thisUser = req.getSession().getAttribute("currentuser");
+		if (thisUser == null) {
+			System.err.println("session user not found");
+			return;
+		}
+		if (thisUser.getClass().equals(Employee.class)) {
+			System.out.println("form controller got the user employee");
+			Employee euser = (Employee) thisUser;
+			int id = Integer.parseInt(req.getParameter("actid"));
+			int rsId = Integer.parseInt(req.getParameter("choice"));
+			fServ.action(rsId,id,LocalDateTime.now()); //TODO add date param to action form
+			//TODO call serve method
+		} else if(thisUser.getClass().equals(Approver.class)){
+			Approver auser = (Approver) thisUser;
+			int id = Integer.parseInt(req.getParameter("actid"));
+			int rsId = Integer.parseInt(req.getParameter("choice"));
+			fServ.action(rsId,id,LocalDateTime.now());
+			//TODO call serve method
+		} else {
+			System.out.println("uh oh, form controller should have got the user");
+		}
 		
 	}
 	
