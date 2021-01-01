@@ -35,23 +35,26 @@ To-do list:
 
 ## Getting Started
    
-'git clone 
-(include all environment setup steps)
+`git clone https://github.com/2010USFJava/MoonberryP1.git`
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+`cd MoonberryP1`
 
-- All the `code` required to get started
-- Images of what it should look like
+* Open STS
+* Import MoonberryP1 as a maven project
+* Maven -> Update Project
+* Run as -> Run on Server
+* Replace database.properties with your own database info. Populate with trms_creation.sql.
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+* Run on localhost:8080
+* Login as username = blue and password = moon for an employee.
+* Login as username = lapp and password = lapp for an approver.
 
 ## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+Nadjah Robinson and Michelle Zhang
 
 ## License
 
-This project uses the following license: [<license_name>](<link>).
+This project uses the MIT license.
